@@ -1,5 +1,8 @@
 # Lotus docs
-## Documentation for Lotus
+
+[DOCUMENTATION](https://marinlauber.github.io/lotus_docs/)
+
+## Old Documentation for Lotus
 
 This repository contains documentation on how to work with Lotus. Namely, the following directories are contained,
 
