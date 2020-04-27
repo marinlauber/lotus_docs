@@ -1,0 +1,375 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Vector &mdash; Lotus 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="MGsolver" href="MGsolver.html" />
+    <link rel="prev" title="Field" href="field.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Lotus
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../simulations/index.html">Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grid/index.html">Grid</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">OOP Fluid Solver</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="fluid.html">Fluid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="body.html">Body</a></li>
+<li class="toctree-l2"><a class="reference internal" href="field.html">Field</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Vector</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#initialize">Initialize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#divergence">Divergence</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gradient">Gradient</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tensor-gradient">Tensor Gradient</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vorticity">Vorticity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lambda-2"><span class="math notranslate nohighlight">\(\lambda_2\)</span></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="MGsolver.html">MGsolver</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../update-the-docs.html">Updating the documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Lotus</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">OOP Fluid Solver</a> &raquo;</li>
+        
+      <li>Vector</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/manual/OOP/vector.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="vector">
+<span id="manual-oop-vector"></span><h1>Vector<a class="headerlink" href="#vector" title="Permalink to this headline">¶</a></h1>
+<p>This routine defines a vector field, such as velocity. This is simply an array holding the two or three component fields. This is more convient than scattering small arrays around the code and gives a place to hold vector specific routines like divergence and gradient.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#initv"><span class="std std-ref">Initialize</span></a></p></li>
+<li><p><a class="reference internal" href="#divergence"><span class="std std-ref">Divergence</span></a></p></li>
+<li><p><a class="reference internal" href="#gradient"><span class="std std-ref">Gradient</span></a></p></li>
+<li><p><a class="reference internal" href="#gradtensor"><span class="std std-ref">Tensor Gradient</span></a></p></li>
+<li><p><a class="reference internal" href="#vorticity"><span class="std std-ref">Vorticity</span></a></p></li>
+<li><p><a class="reference internal" href="#lambda2"><span class="std std-ref">\lambda_2</span></a></p></li>
+</ul>
+<div class="section" id="initialize">
+<span id="initv"></span><h2>Initialize<a class="headerlink" href="#initialize" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="init">
+<code class="sig-name descname">init</code><span class="sig-paren">(</span><em class="sig-param">a</em>, <em class="sig-param">n</em>, <em class="sig-param">V</em>, <em class="sig-param">b</em>, <em class="sig-param">exit</em>, <em class="sig-param">l</em><span class="sig-paren">)</span><a class="headerlink" href="#init" title="Permalink to this definition">¶</a></dt>
+<dd><p>initializes a vector field, that contains 3 different scalar field (one for each component of the vector)</p>
+</dd></dl>
+
+</div>
+<div class="section" id="divergence">
+<span id="id1"></span><h2>Divergence<a class="headerlink" href="#divergence" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt>
+<code class="sig-name descname">divergence</code><span class="sig-paren">(</span><em class="sig-param">v</em>, <em class="sig-param">f</em><span class="sig-paren">)</span></dt>
+<dd><p>Takes the divergence of a specified vector field</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>v</strong> (<em>Class</em><em>[</em><em>vector</em><em>]</em>) – Vector to take divergence from</p></li>
+<li><p><strong>f</strong> (<em>Class</em><em>[</em><em>field</em><em>]</em>) – divergence</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p>Takes the divergence of a the field <code class="docutils literal notranslate"><span class="pre">f</span></code>. Divergence of a vector field is  the sum of the flux on each cell face by Gauss theorem. On a uniform grid this is easily evaluated. On a rectilinear grid, we must scale each of the flux by the face area</p>
+<div class="math notranslate nohighlight">
+\begin{equation}
+    \int\nabla\cdot\vec{u} \, dV = \oint \vec{u}\cdot d\vec{n} \simeq \sum_{d=1}^{Ndims}(u_{i+1/2} - u_{i-1/2})(A_i) = Vol_j\sum_{d=1}^{Ndims} \frac{u_{i+1/2} - u_{i-1/2}}{dx_i}
+\end{equation}</div><p>Where we essentially have the flux at each face and the volume of the j-th cell divided by the i-th dimension of the cell, gives us the orentiend area in the i-th direction.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For a given set of index <code class="docutils literal notranslate"><span class="pre">(i,j,k)</span></code> the velocity values are located to the left/bellow/front of the corresponding pressure point in physical space. If we say cell centers are located at integers values of <code class="docutils literal notranslate"><span class="pre">(i,j,k)</span></code>, the divergence uses velocity points with <code class="docutils literal notranslate"><span class="pre">(i,j,k)</span></code> and <code class="docutils literal notranslate"><span class="pre">(i+1,j,k)</span></code> and the gradient uses scalar at index <code class="docutils literal notranslate"><span class="pre">(i,j,k)</span></code> and <code class="docutils literal notranslate"><span class="pre">(i-1,j,k)</span></code>.</p>
+</div>
+</div>
+<div class="section" id="gradient">
+<span id="id2"></span><h2>Gradient<a class="headerlink" href="#gradient" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt>
+<code class="sig-name descname">gradient</code><span class="sig-paren">(</span><em class="sig-param">v</em>, <em class="sig-param">p</em><span class="sig-paren">)</span></dt>
+<dd><p>Takes the gradient of a specified scalar field</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>v</strong> (<em>Class</em><em>[</em><em>vector</em><em>]</em>) – Vector of gradient of p</p></li>
+<li><p><strong>p</strong> (<em>Class</em><em>[</em><em>field</em><em>]</em>) – field to take gradient of</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p>The i-th component of the gradient of a scalar field is computed as</p>
+<div class="math notranslate nohighlight">
+\begin{equation}
+    [\nabla p]_i = \frac{\partial p}{\partial x_i} \simeq \frac{p_{i,j,k} - p_{i-1,j,k}}{h} = \frac{2(p_{i,j,k} - p_{i-1,j,k})}{dx_{i,j,k}+dx_{i-1,j,k}}
+\end{equation}</div><p>where h is the distance between two scalar cell centers. This is simply the average of the neigbouring vector cells <code class="docutils literal notranslate"><span class="pre">dx(i,j,k)</span></code> and <code class="docutils literal notranslate"><span class="pre">dx(i-1,j,k)</span></code> (this is already computed as <code class="docutils literal notranslate"><span class="pre">dxi2</span></code> in the code).</p>
+</div>
+<div class="section" id="tensor-gradient">
+<span id="gradtensor"></span><h2>Tensor Gradient<a class="headerlink" href="#tensor-gradient" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="gradTensor">
+<code class="sig-name descname">gradTensor</code><span class="sig-paren">(</span><em class="sig-param">v</em>, <em class="sig-param">S</em><span class="sig-paren">)</span><a class="headerlink" href="#gradTensor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes the gradient of a vector field and return a secon-order tensor</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>v</strong> (<em>Class</em><em>[</em><em>vector</em><em>]</em>) – Vector to take gradient of</p></li>
+<li><p><strong>S</strong> (<em>Class</em><em>[</em><em>field</em><em>(</em><em>3</em><em>)</em><em>]</em>) – gradient tensor of vector v</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p>The velocity gradient tensor is returned in the array <code class="docutils literal notranslate"><span class="pre">S</span></code> that is passed to the subroutine.</p>
+<div class="math notranslate nohighlight">
+    \begin{equation}
+        \nabla\vec{v} = \frac{\partial v_i}{\partial x_j}
+    \end{equation}</div><p>Each component is a cell-centered vector. In-line terms are easily evaluated</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">S</span><span class="p">(</span><span class="n">d</span><span class="p">)%</span><span class="n">e</span><span class="p">(</span><span class="n">d</span><span class="p">)%</span><span class="n">point</span><span class="p">()</span> <span class="o">=</span> <span class="n">v</span><span class="p">%</span><span class="n">e</span><span class="p">(</span><span class="n">d</span><span class="p">)%</span><span class="n">point</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="o">-</span><span class="n">v</span><span class="p">%</span><span class="n">e</span><span class="p">(</span><span class="n">d</span><span class="p">)%</span><span class="n">point</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>but cross terms require interpolation once the gradient has been calculated.</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">o</span> <span class="o">=</span> <span class="p">(</span><span class="o">/</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="o">/</span><span class="p">)</span>
+<span class="n">o</span><span class="p">(</span><span class="n">d2</span><span class="p">)</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">v00</span> <span class="o">=&gt;</span> <span class="n">v</span><span class="p">%</span><span class="n">e</span><span class="p">(</span><span class="n">d1</span><span class="p">)%</span><span class="n">point</span><span class="p">(</span><span class="n">arg</span><span class="o">=</span><span class="n">o</span><span class="p">)</span>
+<span class="n">o</span><span class="p">(</span><span class="n">d1</span><span class="p">)</span> <span class="o">=</span>  <span class="mi">1</span><span class="p">;</span> <span class="n">v01</span> <span class="o">=&gt;</span> <span class="n">v</span><span class="p">%</span><span class="n">e</span><span class="p">(</span><span class="n">d1</span><span class="p">)%</span><span class="n">point</span><span class="p">(</span><span class="n">arg</span><span class="o">=</span><span class="n">o</span><span class="p">)</span>
+<span class="n">o</span><span class="p">(</span><span class="n">d2</span><span class="p">)</span> <span class="o">=</span>  <span class="mi">1</span><span class="p">;</span> <span class="n">v11</span> <span class="o">=&gt;</span> <span class="n">v</span><span class="p">%</span><span class="n">e</span><span class="p">(</span><span class="n">d1</span><span class="p">)%</span><span class="n">point</span><span class="p">(</span><span class="n">arg</span><span class="o">=</span><span class="n">o</span><span class="p">)</span>
+<span class="n">o</span><span class="p">(</span><span class="n">d1</span><span class="p">)</span> <span class="o">=</span>  <span class="mi">0</span><span class="p">;</span> <span class="n">v10</span> <span class="o">=&gt;</span> <span class="n">v</span><span class="p">%</span><span class="n">e</span><span class="p">(</span><span class="n">d1</span><span class="p">)%</span><span class="n">point</span><span class="p">(</span><span class="n">arg</span><span class="o">=</span><span class="n">o</span><span class="p">)</span>
+<span class="n">S</span><span class="p">(</span><span class="n">d1</span><span class="p">)%</span><span class="n">e</span><span class="p">(</span><span class="n">d2</span><span class="p">)%</span><span class="n">point</span><span class="p">()</span><span class="o">=</span> <span class="mf">0.25</span><span class="o">*</span><span class="p">(</span><span class="n">v10</span><span class="o">-</span><span class="n">v00</span><span class="o">+</span><span class="n">v11</span><span class="o">-</span><span class="n">v01</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">S(i)%e(j)%p</span></code> stores the value of : <span class="math notranslate nohighlight">\(\partial u_i/\partial x_j\)</span></p>
+</div>
+</div>
+<div class="section" id="vorticity">
+<span id="id3"></span><h2>Vorticity<a class="headerlink" href="#vorticity" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt>
+<code class="sig-name descname">vorticity</code><span class="sig-paren">(</span><em class="sig-param">uij</em>, <em class="sig-param">omega</em><span class="sig-paren">)</span></dt>
+<dd><p>Computes the vorticity field, given a velocity gradient tensor</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uij</strong> (<em>Class</em><em>[</em><em>vector</em><em>(</em><em>3</em><em>)</em><em>]</em>) – velocity gradient tensor</p></li>
+<li><p><strong>omega</strong> (<em>Class</em><em>[</em><em>vector</em><em>]</em>) – vorticity field</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p>The vorticity is return in the array <code class="docutils literal notranslate"><span class="pre">omega</span></code> that is passed to the subroutine. Voriticity is a cell-centered vector.</p>
+<div class="math notranslate nohighlight">
+\begin{equation}
+    \vec{\omega} = \nabla\times\vec{u} \rightarrow \omega_i = \varepsilon_{ijk}\frac{\partial}{\partial x_j}u_k
+\end{equation}</div></div>
+<div class="section" id="lambda-2">
+<span id="lambda2"></span><h2><span class="math notranslate nohighlight">\(\lambda_2\)</span><a class="headerlink" href="#lambda-2" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt>
+<code class="sig-name descname">lambda2</code><span class="sig-paren">(</span><em class="sig-param">uij</em>, <em class="sig-param">lam2</em><span class="sig-paren">)</span></dt>
+<dd><p>Computes the lambda-2 criterion of a given velocity gradient tensor <code class="docutils literal notranslate"><span class="pre">uij</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uij</strong> (<em>Class</em><em>[</em><em>vector</em><em>(</em><em>3</em><em>)</em><em>]</em>) – velocity gradient tensor</p></li>
+<li><p><strong>lam2</strong> (<em>Class</em><em>[</em><em>field</em><em>]</em>) – lambda-2 criterion</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p>The <span class="math notranslate nohighlight">\(\lambda_2\)</span> criterion is the second larges (in magnitude) eigenvalue of</p>
+<div class="math notranslate nohighlight">
+\begin{equation}
+    S_{ik}S_{kj} + \Omega_{ik}\Omega_{kj}
+\end{equation}</div></div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="MGsolver.html" class="btn btn-neutral float-right" title="MGsolver" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="field.html" class="btn btn-neutral float-left" title="Field" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

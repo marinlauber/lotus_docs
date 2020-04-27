@@ -1,0 +1,292 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Serial Simulations &mdash; Lotus 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Parallel Simulations" href="parallel-simulations.html" />
+    <link rel="prev" title="Running Simulations" href="running-simulations.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Lotus
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Simulations</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="running-simulations.html">Running Simulations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="running-simulations.html#sample-project">Sample Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="running-simulations.html#runlotus-script">runLotus Script</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Serial Simulations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel-simulations.html">Parallel Simulations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="single-body-simulation.html">Single Body Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multi-body-simulation.html">Multi Body Simulation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../grid/index.html">Grid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../OOP/index.html">OOP Fluid Solver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../update-the-docs.html">Updating the documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Lotus</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Simulations</a> &raquo;</li>
+        
+      <li>Serial Simulations</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/manual/simulations/serial-simulations.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="serial-simulations">
+<span id="manual-simulations-serial-simulations"></span><h1>Serial Simulations<a class="headerlink" href="#serial-simulations" title="Permalink to this headline">¶</a></h1>
+<p>Running serial simulations in Lotus is prety easy, you probably have already done tht if you followed this documentation. Here we will go through a set-up file (<code class="docutils literal notranslate"><span class="pre">lotuf.f90</span></code>) that are where the user defines the simulation he wants to undertake.</p>
+<p>The first lines of the simulation contain the name of your program, and imports all the required extrenal modules.</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">sphere_flow</span>
+    <span class="k">use </span><span class="n">bodyMod</span><span class="p">,</span>    <span class="n">only</span><span class="p">:</span> <span class="n">body</span>
+    <span class="k">use </span><span class="n">fluidMod</span><span class="p">,</span>   <span class="n">only</span><span class="p">:</span> <span class="n">fluid</span>
+    <span class="k">use </span><span class="n">mympiMod</span><span class="p">,</span>   <span class="n">only</span><span class="p">:</span> <span class="n">init_mympi</span><span class="p">,</span><span class="n">mympi_end</span><span class="p">,</span><span class="n">mympi_rank</span>
+    <span class="k">use </span><span class="n">gridMod</span><span class="p">,</span>    <span class="n">only</span><span class="p">:</span> <span class="n">xg</span>
+    <span class="k">use </span><span class="n">geom_shape</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">sphere</span><span class="p">,</span><span class="n">pi</span>
+    <span class="k">use </span><span class="n">imageMod</span><span class="p">,</span>   <span class="n">only</span><span class="p">:</span> <span class="n">display</span>
+    <span class="k">implicit none</span>
+</pre></div>
+</div>
+<p>Here we import the <code class="docutils literal notranslate"><span class="pre">body</span></code> object from the <code class="docutils literal notranslate"><span class="pre">bodyMod</span></code>, etc. In this case, we only import this instance from the module with the keyword <code class="docutils literal notranslate"><span class="pre">only:</span></code>, this means that only <code class="docutils literal notranslate"><span class="pre">body</span></code> will be availiable in our simulations, no other atribute/method of the class. The same is valid for the other imports.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">implicit</span> <span class="pre">none</span></code> statement is used to inhibit a very old feature of Fortran that by default treats all variables that start with the letters <code class="docutils literal notranslate"><span class="pre">i,</span> <span class="pre">j,</span> <span class="pre">k,</span> <span class="pre">l,</span> <span class="pre">m,</span> <span class="pre">n</span></code> as integers and all other variables as real arguments.</p>
+</div>
+<p>The next few lines define parameters for the simulations. This is relatively self-explanatory.</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">real</span><span class="p">,</span><span class="k">parameter</span> <span class="kd">::</span> <span class="n">D</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="mi">32</span><span class="p">,</span> <span class="n">Re</span> <span class="o">=</span> <span class="mi">3</span><span class="mf">0e3</span> <span class="c">! diameter and Reynolds number</span>
+<span class="kt">integer</span> <span class="kd">::</span> <span class="n">n</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">=</span> <span class="mi">32</span><span class="o">*</span><span class="p">(</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="o">/</span><span class="p">)</span>        <span class="c">! numer of points</span>
+<span class="kt">integer</span> <span class="kd">::</span> <span class="n">b</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="o">/</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="p">)</span>           <span class="c">! MPI blocks (product must equal n_procs)</span>
+<span class="kt">logical</span> <span class="kd">::</span> <span class="n">root</span>                       <span class="c">! root processor</span>
+<span class="k">type</span><span class="p">(</span><span class="n">fluid</span><span class="p">)</span> <span class="kd">::</span> <span class="n">flow</span>
+<span class="k">type</span><span class="p">(</span><span class="n">body</span><span class="p">)</span> <span class="kd">::</span> <span class="n">geom</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In fortran, <code class="docutils literal notranslate"><span class="pre">parameter</span></code> are constant values that are passed to the compiler and replace with their assigned value everywhere they appear in the code. This is very handy to hold constants, as they cannot be changed once assigned a value.</p>
+</div>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="n">init_mympi</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="n">set_blocks</span><span class="o">=</span><span class="n">b</span><span class="p">)</span>
+<span class="n">root</span> <span class="o">=</span> <span class="n">mympi_rank</span><span class="p">()</span><span class="o">==</span><span class="mi">0</span>
+<span class="c">!</span>
+<span class="k">if</span><span class="p">(</span><span class="n">root</span><span class="p">)</span> <span class="k">print</span> <span class="o">*</span><span class="p">,</span><span class="s1">&#39;Setting up the grid, body and fluid&#39;</span>
+<span class="k">if</span><span class="p">(</span><span class="n">root</span><span class="p">)</span> <span class="k">print</span> <span class="o">*</span><span class="p">,</span><span class="s1">&#39;-----------------------------------&#39;</span>
+</pre></div>
+</div>
+<p>Next the grid is defined.</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="n">xg</span><span class="p">(</span><span class="mi">1</span><span class="p">)%</span><span class="n">stretch</span><span class="p">(</span><span class="n">n</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">D</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">D</span><span class="p">,</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">D</span><span class="p">,</span> <span class="mi">5</span><span class="o">*</span><span class="n">D</span><span class="p">,</span> <span class="n">h_min</span><span class="o">=</span><span class="mf">2.</span><span class="p">,</span> <span class="n">h_max</span><span class="o">=</span><span class="mi">1</span><span class="mf">2.</span><span class="p">,</span><span class="n">prnt</span><span class="o">=</span><span class="n">root</span><span class="p">)</span>
+<span class="k">call </span><span class="n">xg</span><span class="p">(</span><span class="mi">2</span><span class="p">)%</span><span class="n">stretch</span><span class="p">(</span><span class="n">n</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">D</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">D</span><span class="p">,</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">D</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">D</span><span class="p">,</span> <span class="n">h_min</span><span class="o">=</span><span class="mf">2.</span><span class="p">,</span><span class="n">prnt</span><span class="o">=</span><span class="n">root</span><span class="p">)</span>
+<span class="k">call </span><span class="n">xg</span><span class="p">(</span><span class="mi">3</span><span class="p">)%</span><span class="n">stretch</span><span class="p">(</span><span class="n">n</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">D</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">D</span><span class="p">,</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">D</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">D</span><span class="p">,</span> <span class="n">h_min</span><span class="o">=</span><span class="mf">2.</span><span class="p">,</span><span class="n">prnt</span><span class="o">=</span><span class="n">root</span><span class="p">)</span>
+<span class="n">geom</span> <span class="o">=</span> <span class="n">sphere</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mf">0.5</span><span class="o">*</span><span class="n">D</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="n">flow</span><span class="p">%</span><span class="n">init</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">b</span><span class="p">,</span><span class="n">geom</span><span class="p">,</span><span class="n">V</span><span class="o">=</span><span class="p">(</span><span class="o">/</span><span class="mf">1.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="o">/</span><span class="p">),</span><span class="n">nu</span><span class="o">=</span><span class="n">D</span><span class="o">/</span><span class="n">Re</span><span class="p">)</span>
+<span class="c">!</span>
+<span class="k">if</span><span class="p">(</span><span class="n">root</span><span class="p">)</span> <span class="k">print</span> <span class="o">*</span><span class="p">,</span><span class="s1">&#39;Starting time update loop&#39;</span>
+<span class="k">if</span><span class="p">(</span><span class="n">root</span><span class="p">)</span> <span class="k">print</span> <span class="o">*</span><span class="p">,</span><span class="s1">&#39;-----------------------------------&#39;</span>
+<span class="k">if</span><span class="p">(</span><span class="n">root</span><span class="p">)</span> <span class="k">print</span> <span class="o">*</span><span class="p">,</span><span class="s1">&#39; -t- , -dt- &#39;</span>
+</pre></div>
+</div>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">do while</span><span class="p">(</span><span class="n">flow</span><span class="p">%</span><span class="nb">time</span><span class="o">&lt;</span><span class="mi">10</span><span class="o">*</span><span class="n">D</span><span class="p">)</span>
+    <span class="k">call </span><span class="n">flow</span><span class="p">%</span><span class="n">update</span>
+    <span class="k">write</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="s1">&#39;(f10.4,f8.4,3e16.8)&#39;</span><span class="p">)</span> <span class="n">flow</span><span class="p">%</span><span class="nb">time</span><span class="o">/</span><span class="n">D</span><span class="p">,</span><span class="n">flow</span><span class="p">%</span><span class="n">dt</span><span class="p">,</span> <span class="p">&amp;</span>
+        <span class="mf">2.</span><span class="o">*</span><span class="n">geom</span><span class="p">%</span><span class="n">pforce</span><span class="p">(</span><span class="n">flow</span><span class="p">%</span><span class="n">pressure</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">pi</span><span class="o">*</span><span class="n">D</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mf">4.</span><span class="p">)</span>
+    <span class="k">if</span><span class="p">(</span><span class="nb">mod</span><span class="p">(</span><span class="n">flow</span><span class="p">%</span><span class="nb">time</span><span class="p">,</span><span class="mf">0.1</span><span class="o">*</span><span class="n">D</span><span class="p">)</span><span class="o">&lt;</span><span class="n">flow</span><span class="p">%</span><span class="n">dt</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">    if</span><span class="p">(</span><span class="n">root</span><span class="p">)</span> <span class="k">print</span> <span class="s1">&#39;(f6.1,&quot;,&quot;,f6.3)&#39;</span><span class="p">,</span><span class="n">flow</span><span class="p">%</span><span class="nb">time</span><span class="o">/</span><span class="n">D</span><span class="p">,</span><span class="n">flow</span><span class="p">%</span><span class="n">dt</span>
+    <span class="k">call </span><span class="n">display</span><span class="p">(</span><span class="n">flow</span><span class="p">%</span><span class="n">velocity</span><span class="p">%</span><span class="n">vorticity_Z</span><span class="p">(),</span> <span class="s1">&#39;out_vort&#39;</span><span class="p">,</span> <span class="n">lim</span> <span class="o">=</span> <span class="mi">2</span><span class="mf">0.</span><span class="o">/</span><span class="n">D</span><span class="p">)</span>
+    <span class="k">end if</span>
+<span class="k">end do</span>
+</pre></div>
+</div>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span>    <span class="k">if</span><span class="p">(</span><span class="n">root</span><span class="p">)</span> <span class="k">print</span> <span class="o">*</span><span class="p">,</span><span class="s1">&#39;Loop complete: writing restart files and exiting&#39;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">root</span><span class="p">)</span> <span class="k">print</span> <span class="o">*</span><span class="p">,</span><span class="s1">&#39;-----------------------------------&#39;</span>
+    <span class="k">call </span><span class="n">flow</span><span class="p">%</span><span class="k">write</span><span class="p">()</span>
+    <span class="k">call </span><span class="n">mympi_end</span>
+<span class="k">end program </span><span class="n">sphere_flow</span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="parallel-simulations.html" class="btn btn-neutral float-right" title="Parallel Simulations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="running-simulations.html" class="btn btn-neutral float-left" title="Running Simulations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

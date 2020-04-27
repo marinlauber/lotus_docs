@@ -1,0 +1,320 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Body &mdash; Lotus 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Field" href="field.html" />
+    <link rel="prev" title="Fluid" href="fluid.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Lotus
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../simulations/index.html">Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grid/index.html">Grid</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">OOP Fluid Solver</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="fluid.html">Fluid</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Body</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#measure">Measure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fill-arrays">Fill arrays</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#update">Update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#map">Map</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="field.html">Field</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vector.html">Vector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MGsolver.html">MGsolver</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../update-the-docs.html">Updating the documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Lotus</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">OOP Fluid Solver</a> &raquo;</li>
+        
+      <li>Body</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/manual/OOP/body.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="body">
+<span id="manual-oop-body"></span><h1>Body<a class="headerlink" href="#body" title="Permalink to this headline">¶</a></h1>
+<p>Body module</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#measure"><span class="std std-ref">Measure</span></a></p></li>
+<li><p><a class="reference internal" href="fluid.html#update"><span class="std std-ref">update</span></a></p></li>
+<li><p><a class="reference internal" href="#fillarrays"><span class="std std-ref">Fill arrays</span></a></p></li>
+<li><p><a class="reference internal" href="#map"><span class="std std-ref">Map</span></a></p></li>
+</ul>
+<div class="section" id="measure">
+<span id="id1"></span><h2>Measure<a class="headerlink" href="#measure" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt>
+<code class="sig-name descname">measure</code><span class="sig-paren">(</span><em class="sig-param">a</em>, <em class="sig-param">beta</em>, <em class="sig-param">mu1n</em>, <em class="sig-param">ub</em><span class="sig-paren">)</span></dt>
+<dd><p>Measures the body in the current configuration, if not <code class="docutils literal notranslate"><span class="pre">a%upToDate</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>Class</em><em>[</em><em>body</em><em>]</em>) – body class to measure</p></li>
+<li><p><strong>beta</strong> (<em>Class</em><em>[</em><em>vector</em><em>]</em>) – mu_0</p></li>
+<li><p><strong>mu1n</strong> (<em>Class</em><em>[</em><em>vector</em><em>(</em><em>3</em><em>)</em><em>]</em>) – mu_1</p></li>
+<li><p><strong>ub</strong> (<em>Class</em><em>[</em><em>vector</em><em>]</em>) – body velocity</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>N-A</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="fill-arrays">
+<span id="fillarrays"></span><h2>Fill arrays<a class="headerlink" href="#fill-arrays" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="fill_arrays">
+<code class="sig-name descname">fill_arrays</code><span class="sig-paren">(</span><em class="sig-param">a</em>, <em class="sig-param">beta</em>, <em class="sig-param">mu1n</em>, <em class="sig-param">ub</em><span class="sig-paren">)</span><a class="headerlink" href="#fill_arrays" title="Permalink to this definition">¶</a></dt>
+<dd><p>populates the <code class="docutils literal notranslate"><span class="pre">beta</span></code>, <code class="docutils literal notranslate"><span class="pre">mu1n</span></code> and <code class="docutils literal notranslate"><span class="pre">ub</span></code> arrays</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>Class</em><em>[</em><em>body</em><em>]</em>) – body class to measure</p></li>
+<li><p><strong>beta</strong> (<em>Class</em><em>[</em><em>vector</em><em>]</em>) – mu_0</p></li>
+<li><p><strong>mu1n</strong> (<em>Class</em><em>[</em><em>vector</em><em>(</em><em>3</em><em>)</em><em>]</em>) – mu_1</p></li>
+<li><p><strong>ub</strong> (<em>Class</em><em>[</em><em>vector</em><em>]</em>) – body velocity</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>N-A</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="update">
+<span id="id2"></span><h2>Update<a class="headerlink" href="#update" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt>
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><em class="sig-param">a</em>, <em class="sig-param">t</em><span class="sig-paren">)</span></dt>
+<dd><p>updates the possition of the body if a mapping is associated to it</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>Class</em><em>[</em><em>body</em><em>]</em>) – body to update</p></li>
+<li><p><strong>t</strong> (<em>real</em>) – time</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>N-A</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p>if called, this sets <code class="docutils literal notranslate"><span class="pre">body%upToDate=.false.</span></code>, which ensures that the body is measured afterwards.</p>
+</div>
+<div class="section" id="map">
+<span id="id3"></span><h2>Map<a class="headerlink" href="#map" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt>
+<code class="sig-name descname">map</code><span class="sig-paren">(</span><em class="sig-param">a</em>, <em class="sig-param">x</em><span class="sig-paren">)</span></dt>
+<dd><p>maps a point <code class="docutils literal notranslate"><span class="pre">x</span></code> in the ference configuration to the current configuration. (Deformation gradient tensor)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>Class</em><em>[</em><em>body</em><em>]</em>) – body to update</p></li>
+<li><p><strong>x</strong> (<em>Array</em><em>[</em><em>real</em><em>]</em>) – position vector</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Array[real]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p>This function return the new coordiantes of the point <code class="docutils literal notranslate"><span class="pre">x</span></code>. In the case where no body is not assocoated with any mapping, the input is returned.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="field.html" class="btn btn-neutral float-right" title="Field" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="fluid.html" class="btn btn-neutral float-left" title="Fluid" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
