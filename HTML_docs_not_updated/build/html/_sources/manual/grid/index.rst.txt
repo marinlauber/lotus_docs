@@ -11,7 +11,6 @@
    There are a number of diferences when setting up the grid for two, three dimensional; parallel and serial computation simlations.
 
    .. toctree::
-      :maxdepth: 1
 
       stretch
       2d-grid

@@ -17,42 +17,37 @@
   
 
   
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-  
-    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="Lotus 1.0 documentation" href="../index.html"/>
-        <link rel="next" title="Test Case" href="test-case.html"/>
-        <link rel="prev" title="Introduction" href="introduction.html"/> 
-
-  
-  <script src="../_static/js/modernizr.min.js"></script>
-
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Simulations" href="simulations/index.html" />
+    <link rel="prev" title="Introduction" href="introduction.html" /> 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -95,11 +90,17 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#required-software">Required software</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#setting-up">Setting up</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hpc-instalation">HPC instalation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#iridis-4">Iridis 4</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#iridis-5">Iridis 5</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="test-case.html">Test Case</a></li>
-<li class="toctree-l1"><a class="reference internal" href="grid/index.html">Grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#docker-instalation">Docker instalation</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="simulations/index.html">Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="grid/index.html">Grid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="OOP/index.html">OOP Fluid Solver</a></li>
 <li class="toctree-l1"><a class="reference internal" href="update-the-docs.html">Updating the documentation</a></li>
 </ul>
 
@@ -112,7 +113,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">Lotus</a>
@@ -120,9 +121,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -167,34 +169,27 @@
   <div class="section" id="getting-started">
 <h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
-<li><a class="reference internal" href="#required"><span class="std std-ref">Required software</span></a></li>
-<li><a class="reference internal" href="#set-up"><span class="std std-ref">Setting up</span></a></li>
+<li><p><a class="reference internal" href="#required"><span class="std std-ref">Required software</span></a></p></li>
+<li><p><a class="reference internal" href="#set-up"><span class="std std-ref">Setting up</span></a></p></li>
+<li><p><a class="reference internal" href="#hpc"><span class="std std-ref">HPC instalation</span></a></p></li>
+<li><p><a class="reference internal" href="#docker"><span class="std std-ref">Docker instalation</span></a></p></li>
 </ul>
 <div class="section" id="required-software">
 <span id="required"></span><h2>Required software<a class="headerlink" href="#required-software" title="Permalink to this headline">¶</a></h2>
 <p><strong>Linux/Unix and Developer Tools</strong></p>
-<p>Lotus needs to compile a small fortran script file at the start of every simulation. This is way too difficult to do with Windows machines. (<code class="docutils literal"><span class="pre">cmake</span></code> is an option, but we don&#8217;t recommend it.)</p>
-<p>Ubuntu comes preloaded with <code class="docutils literal"><span class="pre">git</span></code> and <code class="docutils literal"><span class="pre">make</span></code>.</p>
-<p>OSX users should open the <code class="docutils literal"><span class="pre">terminal</span></code> app and type:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ git
+<p>Lotus needs to compile a small fortran script file at the start of every simulation. This is way too difficult to do with Windows machines. (<code class="docutils literal notranslate"><span class="pre">cmake</span></code> is an option, but we don’t recommend it.)</p>
+<p>Ubuntu comes preloaded with <code class="docutils literal notranslate"><span class="pre">git</span></code> and <code class="docutils literal notranslate"><span class="pre">make</span></code>. OSX users should open the <code class="docutils literal notranslate"><span class="pre">terminal</span></code> app and type</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git
 </pre></div>
 </div>
 <p>At the prompt, you can download the developer tools.</p>
-<p><strong>Dropbox</strong></p>
-<p>Install <a class="reference external" href="https://www.dropbox.com">dropbox</a> and join the dropbox folder ‘repos’. These instruction assume the folder is located at <code class="docutils literal"><span class="pre">~/Dropbox/repos/</span></code></p>
 <p><strong>Programming languages and libraries</strong></p>
-<dl class="docutils">
-<dt><a class="reference external" href="https://gcc.gnu.org/wiki/GFortranBinaries">gfortran</a> (v4.8+): The code is written in fortran, so you&#8217;ll need a compiler. Check your version using::</dt>
-<dd>$ gfortran &#8211;version</dd>
-</dl>
-<p><a class="reference external" href="http://www.mpich.org/downloads/">MPICH</a> : To run in parallel on a multi-core machine, you&#8217;ll need to install this library.</p>
-<p><a class="reference external" href="https://www.python.org/">python</a> : We recommend doing all of the data-analysis and visualization in python. This can also be used to run a series of simulations and to update these documents.</p>
-<p><a class="reference external" href="https://www.r-project.org/">R-project</a> : An alternative data-analysis and visualization language. Some usefull libraries to install:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo R
-&gt; install.packages(&quot;ggplot2&quot;)
-&gt; install.packages(&quot;dplyr&quot;)
+<p><a class="reference external" href="https://gcc.gnu.org/wiki/GFortranBinaries">gfortran</a> (v4.8+): The code is written in fortran, so you’ll need a compiler. Check your version using</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gfortran --version
 </pre></div>
 </div>
+<p><a class="reference external" href="http://www.mpich.org/downloads/">MPICH</a> : To run in parallel on a multi-core machine, you’ll need to install this library.</p>
+<p><a class="reference external" href="https://www.python.org/">python</a> : We recommend doing all of the data-analysis and visualization in python. This can also be used to run a series of simulations and to update these documents.</p>
 <p><strong>Additional Software</strong></p>
 <p><a class="reference external" href="http://www.imagemagick.org/script/convert.php">convert</a> (v6.9+): Convert is a cross platform library to create and manipulate images. It is required for the code to generate images during run-time.</p>
 <p><a class="reference external" href="http://www.paraview.org/">paraview</a> : The output binary file can be read and rendered using paraview.</p>
@@ -203,44 +198,39 @@
 <div class="section" id="setting-up">
 <span id="set-up"></span><h2>Setting up<a class="headerlink" href="#setting-up" title="Permalink to this headline">¶</a></h2>
 <p><strong>Add Profile</strong></p>
-<p>A profile file holds a list of shortcuts and adds things to your working <code class="docutils literal"><span class="pre">PATH</span></code>.</p>
-<p>If you&#8217;re on Ubuntu:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ cp ~/Dropbox/repos/profile_ubuntu.txt ~/.profile
-$ atom ~/.bashrc
+<p>Create a <code class="docutils literal notranslate"><span class="pre">~/.profile</span></code> file in the home directory and add the following lines</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ export MGLHOME=$HOME&#39;/Workspace/Lotus/solver&#39;
+$ export PATH=$PATH:$MGLHOME/bin:$MGLHOME/oop/bin
+$ export MPI=&#39;true&#39;
+$ export F90=&#39;gfortran&#39;
+$ alias open=&#39;xdg-open&#39;
+$ ulimit -s unlimited
 </pre></div>
 </div>
-<p>which will open the bach file. Add the lines:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># read user scripts</span>
-<span class="n">source</span> <span class="o">~/.</span><span class="n">profile</span>
-</pre></div>
-</div>
-<p>If you&#8217;re on OSX:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ cp ~/Dropbox/repos/profile_osx.txt ~/.profile
-</pre></div>
-</div>
-<p>In either case, you can now open a new terminal (which will automatically invoke the profile) or <code class="docutils literal"><span class="pre">source</span></code> it in the current terminal:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ source ~/.profile
+<p>Source the <code class="docutils literal notranslate"><span class="pre">.profile</span></code> file into the <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> file</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ echo &quot;source ~/.profile&quot; &gt;&gt; ~/.bashrc
 </pre></div>
 </div>
 <p><strong>Clone Libraries</strong></p>
-<p>Now you&#8217;re ready to get Lotus. Make a Workspace folder and go into it:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ mkdir -p ~/Workspace/
-$ cd ~/Workspace
+<p>Now you’re ready to get Lotus. Make a Workspace folder and go into it</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkdir -p ~/Workspace/Lotus/
+$ cd ~/Workspace/Lotus/
 </pre></div>
 </div>
-<p>Clone the solver repositories:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ git clone -o dropbox ~/Dropbox/repos/solver
+<p>Clone the solver repositories</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/weymouth/lotus_geom_lib solver
 $ cd solver
-$ git clone -o dropbox ~/Dropbox/repos/oop
+$ git clone https://github.com/weymouth/lotus_oop oop
 </pre></div>
 </div>
-<p>Note than when you clone the solver, there will be a
-separate README file in that folder. This file applies
-to an old version of the code. You do not need to
-follow those instructions for Lotus installation.</p>
+<p>Now you should have both the geom and the fluid libraries at <code class="docutils literal notranslate"><span class="pre">solver/geom_lib</span></code> and <code class="docutils literal notranslate"><span class="pre">solver/oop</span></code>, respectively.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If your are doing some sort of developement, your are encourage to creat your own branch <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">my_new_branch</span></code> at this point, this ensures the master is always the latest working branch, and you can revert to it if you break your developement branch.</p>
+</div>
 <p><strong>Build Libraries</strong></p>
-<p>This step is optional since running the Lotus will build the libraries automatically:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ cd ~/Workspace/solver/geom_lib
+<p>This step is optional since running the Lotus will build the libraries automatically</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd ~/Workspace/Lotus/solver/geom_lib
 $ make
 $ cd ../oop
 $ make
@@ -248,22 +238,372 @@ $ make
 </div>
 <p>There should be no errors though possibily a few warnings.</p>
 </div>
+<div class="section" id="hpc-instalation">
+<span id="hpc"></span><h2>HPC instalation<a class="headerlink" href="#hpc-instalation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="iridis-4">
+<h3>Iridis 4<a class="headerlink" href="#iridis-4" title="Permalink to this headline">¶</a></h3>
+<p><strong>Set-up Iridis 4</strong></p>
+<p>First you will need and Iridis4 account. You can request on to isolution <a class="reference external" href="https://sotonproduction.service-now.com/serviceportal?id=sc_cat_item&amp;sys_id=427c697fdb9ae300f91c8c994b96192">here</a>. Once this is done, login to Iridis via ssh with an activated account when connected to the university network or VPN:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ssh -x &lt;username&gt;@iridis4_a.soton.ac.uk
+</pre></div>
+</div>
+<p><strong>Pull Lotus solver from github</strong></p>
+<p>Once accessed to the login node you will be in a remote terminal. First, create a folder for Lotus directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkdir ~/Lotus
+</pre></div>
+</div>
+<p>Now get in that directory and pull the latest version of the geom and fluid libraries from Github. Make sure you are added as a collaborator these repositories (ask Gabe) or you won’t be able to access them.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd ~/Lotus
+$ git clone https://&lt;github-username&gt;:&lt;github-password&gt;@github.com/weymouth/lotus_geom_lib.git solver
+$ cd solver
+$ git clone https://&lt;github-username&gt;:&lt;github-password&gt;@github.com/weymouth/lotus_oop.git oop
+</pre></div>
+</div>
+<p>The clone command pulls the ‘master’ branch by default. To access any other branch just use</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd oop
+$ git checkout &lt;branch-name&gt;
+</pre></div>
+</div>
+<p>And this will pull the branch, checkout into it, and track the remote branch.</p>
+<p><strong>Configure your bash profile</strong></p>
+<p>In order to run Lotus the bash profile needs to be amended and the linux <code class="docutils literal notranslate"><span class="pre">.profile</span></code> script sourced into your <code class="docutils literal notranslate"><span class="pre">~/.bash_profile</span></code>. Create the linux <code class="docutils literal notranslate"><span class="pre">.profile</span></code> Lotus script (almost same as profile_ubuntu.txt for which only the first line needs to be modified):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd
+$ nano .profile
+
+$ export MGLHOME=$HOME&#39;/Lotus/solver&#39;
+$ export PATH=$PATH:$MGLHOME/bin:$MGLHOME/oop/bin
+$ export MPI=&#39;true&#39;
+$ export F90=&#39;gfortran&#39;
+$ alias open=&#39;xdg-open&#39;
+$ ulimit -s unlimited
+$ alias trash=&#39;gvfs-trash&#39;
+</pre></div>
+</div>
+<p>Save this file with</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ctrl+o
+$ ctrl+x
+</pre></div>
+</div>
+<p>(You can also scp your local <code class="docutils literal notranslate"><span class="pre">.profile</span></code> and just modify the first line as above). Edit the <code class="docutils literal notranslate"><span class="pre">~/.bash_profile</span></code> script to source the new <code class="docutils literal notranslate"><span class="pre">.profile</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ nano .bash_profile
+</pre></div>
+</div>
+<p>Add the following lines</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Source your linux .profile</span>
+<span class="k">if</span> <span class="p">[</span> <span class="o">-</span><span class="n">f</span> <span class="o">~/.</span><span class="n">profile</span> <span class="p">];</span> <span class="n">then</span>
+    <span class="o">.</span> <span class="o">~/.</span><span class="n">profile</span>
+<span class="n">fi</span>
+</pre></div>
+</div>
+<p>Save the file as before. To update the <code class="docutils literal notranslate"><span class="pre">~/.bash_profile</span></code> for the current log in session you need to source the profile in the command line.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ source ~/.bash_profile
+</pre></div>
+</div>
+<p>You don’t need to do this every time you log in to iridis. Now you should be good to compile and run Lotus.</p>
+<p><strong>Load the required modules and compile lotus</strong></p>
+<p>The module required to run Lotus are: R, gcc, openmpi. They can be loaded into your login node as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ module purge
+$ module load binutils/2.26
+$ module load R/3.3.0
+$ module load openmpi/1.10.6/gcc
+$ module load gcc/6.1.0
+</pre></div>
+</div>
+<p>In order to avoid problems with the openmpi library (mpi.mod), the FC (Fortran compiler) environment
+variable needs to be exported as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ export FC=gcc-6.1.0
+</pre></div>
+</div>
+<p>Otherwise the openmpi Fortran compiler (mpif90) will complain regarding the GNU Fortran version.
+Also note that the last module to be uploaded is gcc/6.1.0 to override the default gcc module loaded
+with openmpi.</p>
+<p>Now go to your <code class="docutils literal notranslate"><span class="pre">~/Lotus/solver/geom_lib/</span></code> and <code class="docutils literal notranslate"><span class="pre">~/Lotus/solver/oop/</span></code> folder and try to compile the code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd ~/Lotus/solver/geom_lib/
+$ make clean
+$ make
+$ cd ~/Lotus/solver/oop/
+$ make clean
+$ make
+</pre></div>
+</div>
+<p>If the mpi.mod library gives trouble is probably because the openmpi module has been loaded before
+the gcc module. To solve it try:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ make clean
+$ module unload openmpi/1.10.6/gcc
+$ module load openmpi/1.10.6/gcc
+$ make
+</pre></div>
+</div>
+<p><strong>Run your Lotus test simulation into the login nodes</strong></p>
+<p>Before running, the openmpi module which compiles lotus.f90 needs to be changed to version 1.8.3 since version
+1.10.6 can be problematic (see * link). The best way to do this is to purge and load the modules again:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ module purge
+$ module load binutils/2.26
+$ module load R/3.3.0
+$ module load openmpi/1.8.3/gcc
+$ module load gcc/6.1.0
+</pre></div>
+</div>
+<p>Now you can give it a try in the login node (a very short simulation, just to see that it runs correctly).
+To do so, add a <code class="docutils literal notranslate"><span class="pre">/projects</span></code> folder into the <code class="docutils literal notranslate"><span class="pre">~/Lotus/</span></code> folder previously created and scp a valid lotus.f90 file).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkdir ~/Lotus/projects/
+$ mkdir ~/Lotus/projects/project1/
+</pre></div>
+</div>
+<p>scp here you lotus.f90 file, eg:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ scp lotus.f90 &lt;username&gt;@iridis4_a.soton.ac.uk:~/Lotus/projects/project1
+</pre></div>
+</div>
+<p>Run Lotus as usual, eg:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ runLotus 4 test
+</pre></div>
+</div>
+<p><strong>Submit your Lotus simulation to the computational nodes</strong></p>
+<p>Once the compilation and the execution of Lotus has succeed you are good to submit your Lotus
+simulation into the computational nodes. To do so, a submission file is required.
+Have a look at the subLotus file and familiarize with the submission commands.</p>
+<p>Remember that the number of processors specified in the lotus.f90 (blocs) and at the runnining command
+(subLotus last line) must be the same as the number of processors specified at the #PBS variable of the
+subLotus file. Eg: in lotus.f90:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">integer</span> <span class="kd">::</span> <span class="n">b</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="o">/</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="o">/</span><span class="p">)</span>   <span class="c">! Blocks. Product = number of processors.</span>
+</pre></div>
+</div>
+<p>subLotus:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># PBS -l nodes=4:ppn=16</span>
+<span class="c1"># Remember that Iridis has 2 processors per nodes with 8 cores per processor = 16 processor cores per node</span>
+
+<span class="n">runLotus</span> <span class="mi">64</span> <span class="n">test</span>
+</pre></div>
+</div>
+<p>Now, scp subLotus to <code class="docutils literal notranslate"><span class="pre">~/Lotus/projects/project1/</span></code> and modify with your own preferences. Submit the job:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ qsub subLotus
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The qsub command will not work if you have loaded ‘module purge’ into the command line or your ~/.bash_profile. To rectify this simply log out and log back in to iridis, making sure that you are not loading ‘module purge’ in your ~/.bash_profile.</p>
+</div>
+<p>Output data will be found in the folder specified in the subLotus file. Useful information about Iridis (job submissions, queues, forums, etc) can be found in:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="https://hpc.soton.ac.uk/community/projects/iridis/wiki">https://hpc.soton.ac.uk/community/projects/iridis/wiki</a></p></li>
+<li><p><a class="reference external" href="https://hpc.soton.ac.uk/community/boards/1/topics/7832?r=7861#message-7861">https://hpc.soton.ac.uk/community/boards/1/topics/7832?r=7861#message-7861</a></p></li>
+</ul>
+</div></blockquote>
+<p><strong>subLotus</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash -login</span>
+<span class="c1">#PBS -S /bin/bash</span>
+
+<span class="c1"># Job script to run mpi job in parallel. The line above loads your bash profile into the computational node.</span>
+
+<span class="c1"># Set resource requirements for job</span>
+<span class="c1"># 1. number of nodes and processors per nodes</span>
+<span class="c1"># 2. runtime expected</span>
+<span class="c1"># 3. job name</span>
+<span class="c1"># - these can be overridden on the qsub command line</span>
+
+<span class="c1">#PBS -l nodes=1:ppn=16</span>
+<span class="c1">#PBS -l walltime=00:10:00</span>
+<span class="c1">#PBS -N testing</span>
+<span class="c1">#PBS -m abe</span>
+
+<span class="c1"># Load required modules so that the commands at the computational node are found</span>
+module purge
+module load binutils/2.26
+module load openmpi/1.8.3/gcc
+module load gcc/6.1.0
+module load R/3.3.0
+
+<span class="c1"># Change to directory from which job was submitted</span>
+<span class="nb">cd</span> <span class="nv">$PBS_O_WORKDIR</span>
+
+<span class="c1"># Run Lotus (mpif90). Note that total np must be the same as stated before. You can also use your /scratch</span>
+<span class="c1"># directory if the simulation writes too much data for your /home directory.</span>
+
+runLotus <span class="m">16</span> <span class="nb">test</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="iridis-5">
+<h3>Iridis 5<a class="headerlink" href="#iridis-5" title="Permalink to this headline">¶</a></h3>
+<p><strong>Using Singularity, the container-based platform for HPC systems</strong></p>
+<p>Because Docker requires root privileges to run on systems, it is not possible to use in clusters. Therefore, an alternative container-based platform is required to run it in HPC systems. This is <a class="reference external" href="https://singularity.lbl.gov/">Singularity</a> and here it is explained how to use Lotus in Iridis5 through this app. This is very useful so you can avoid the troubles of using different OpenMPI version for build/run.</p>
+<p>Note that it is not possible to run the current Lotus image through Singularity on Iridis4 since the image is built on top of Ubuntu 18.04, which uses a more recent Linux kernel than the latest available in Iridis4.</p>
+<p>To run Lotus through Singularity on Iridis5 follow the next steps.</p>
+<p>Connect to Iridis5 and create a folder for Lotus in your home directory (if you do not have it already):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ssh username@iridis5_b.soton.ac.uk
+$ mkdir -p Lotus/bin
+</pre></div>
+</div>
+<p>In the <code class="docutils literal notranslate"><span class="pre">~/Lotus/bin</span></code> director, download and build the Lotus Docker image as a Singularity image (you need to be added as collaborator in the Docker Hub repository, send me an <a class="reference external" href="mailto:b&#46;fontgarcia&#37;&#52;&#48;soton&#46;ac&#46;uk">email</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd ~/Lotus/bin
+$ export SINGULARITY_DOCKER_USERNAME=docker_username
+$ export SINGULARITY_DOCKER_PASSWORD=docker_password
+$ module load singularity
+$ singularity build lotus.sif docker://bfont/lotus
+</pre></div>
+</div>
+<p>Copy the <code class="docutils literal notranslate"><span class="pre">runSingularity</span></code> script into the <code class="docutils literal notranslate"><span class="pre">~/Lotus/bin</span></code> directory. It should now contain the <code class="docutils literal notranslate"><span class="pre">runSingularity</span></code> script and the <code class="docutils literal notranslate"><span class="pre">lotus.sif</span></code> Singularity image. The <code class="docutils literal notranslate"><span class="pre">runSingularity</span></code> script needs execution permissions, so set them with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ chmod +x runSingularity
+</pre></div>
+</div>
+<p>Add the following lines (environmental variables) in <cite>~/.bash_profile</cite>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ export LOCAL_LOTUS_DIR=$HOME&#39;/Lotus&#39;
+$ export LOTUS_BIN=$LOCAL_LOTUS_DIR&#39;/bin&#39;
+$ export LOCAL_PROJ_DIR=&#39;/scratch/&#39;$USER&#39;/Lotus&#39;
+$ export DOCKER_PROJ_DIR=&#39;/app/projects&#39;
+$ export PATH=$PATH:$LOTUS_BIN
+</pre></div>
+</div>
+<p>Source again the <code class="docutils literal notranslate"><span class="pre">~/.bash_profile</span></code> script typing <code class="docutils literal notranslate"><span class="pre">.</span> <span class="pre">~/.bash_profile</span></code> in the terminal.</p>
+<p>Create a project folder in <code class="docutils literal notranslate"><span class="pre">~/Lotus</span></code> such as <code class="docutils literal notranslate"><span class="pre">test</span></code>. Include in <code class="docutils literal notranslate"><span class="pre">~/Lotus/test</span></code> the provided <code class="docutils literal notranslate"><span class="pre">subLotus</span></code> script and a <code class="docutils literal notranslate"><span class="pre">lotus.f90</span></code> file you would like to run.</p>
+<p>Edit the <code class="docutils literal notranslate"><span class="pre">subLotus</span></code> submission script to meet your <code class="docutils literal notranslate"><span class="pre">lotus.f90</span></code> requirements (such as number of processes), walltime, etc. The line that calls the <code class="docutils literal notranslate"><span class="pre">runSingularity</span></code> script to run the Singularity image (which includes the Lotus solver) is the last line of the subimission script:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ runSingularity $SLURM_NTASKS test
+</pre></div>
+</div>
+<p>Specify the folder where Lotus will place the output, in this case <code class="docutils literal notranslate"><span class="pre">test</span></code>. The script <code class="docutils literal notranslate"><span class="pre">runSingularity</span></code> automatically places this folder in your <code class="docutils literal notranslate"><span class="pre">scratch</span></code> directory. Check the script for more info. You can specify a restarting folder as normally with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ runSingularity $SLURM_NTASKS test2 test
+</pre></div>
+</div>
+<p>Where the restarting folder has to be located in the <code class="docutils literal notranslate"><span class="pre">/scratch/$USER/Lotus/test</span></code> directory.</p>
+<p>The job can be finally submitted from the <code class="docutils literal notranslate"><span class="pre">~/Lotus/test</span></code> directory as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd ~/Lotus/test
+$ sbatch subLotus
+</pre></div>
+</div>
+<p>and results will be placed in the <code class="docutils literal notranslate"><span class="pre">/scratch/$USER/Lotus</span></code> directory.</p>
+<p><strong>runSingularity</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="c1"># Create the /scratch/$USER/Lotus folder if it does not exist</span>
+<span class="k">if</span> <span class="o">[</span> ! -d <span class="s2">&quot;</span><span class="nv">$LOCAL_PROJ_DIR</span><span class="s2">&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+mkdir -p <span class="nv">$LOCAL_PROJ_DIR</span>
+<span class="nb">echo</span> <span class="s2">&quot;Directory </span><span class="nv">$LOCAL_PROJ_DIR</span><span class="s2"> created.&quot;</span>
+<span class="k">fi</span>
+
+<span class="c1"># Check that at least the number of processors and the working directory is specified</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$#</span> -le <span class="m">1</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+<span class="nb">echo</span> <span class="s2">&quot;usage: runSingularity proc_num work_dir resume_dir_path&quot;</span>
+<span class="nb">exit</span> <span class="m">1</span>
+<span class="k">fi</span>
+
+<span class="c1"># If the directories specified lack &quot;/&quot; at the end, add it.</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$#</span> -eq <span class="m">3</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+<span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">3</span><span class="p">: -1</span><span class="si">}</span><span class="s2">&quot;</span> !<span class="o">=</span> <span class="s2">&quot;/&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+    <span class="nb">set</span> -- <span class="s2">&quot;</span><span class="si">${</span><span class="p">@:</span><span class="nv">1</span><span class="p">:</span><span class="nv">2</span><span class="si">}</span><span class="s2">&quot;</span> <span class="s2">&quot;</span><span class="nv">$3</span><span class="s2">/&quot;</span>
+<span class="k">fi</span>
+<span class="k">elif</span> <span class="o">[</span> <span class="nv">$#</span> -eq <span class="m">2</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+<span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">2</span><span class="p">: -1</span><span class="si">}</span><span class="s2">&quot;</span> !<span class="o">=</span> <span class="s2">&quot;/&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+    <span class="nb">set</span> -- <span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span> <span class="s2">&quot;</span><span class="nv">$2</span><span class="s2">/&quot;</span>
+<span class="k">fi</span>
+<span class="k">fi</span>
+
+<span class="c1"># Setting default project folders in /scratch/$USER/Lotus. Comment the following lines to specify other paths</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$#</span> -eq <span class="m">3</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+<span class="nb">set</span> -- <span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span> <span class="s2">&quot;</span><span class="nv">$LOCAL_PROJ_DIR</span><span class="s2">/</span><span class="nv">$2</span><span class="s2">&quot;</span> <span class="s2">&quot;</span><span class="nv">$LOCAL_PROJ_DIR</span><span class="s2">/</span><span class="nv">$3</span><span class="s2">&quot;</span>
+<span class="k">elif</span> <span class="o">[</span> <span class="nv">$#</span> -eq <span class="m">2</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+<span class="nb">set</span> -- <span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span> <span class="s2">&quot;</span><span class="nv">$LOCAL_PROJ_DIR</span><span class="s2">/</span><span class="nv">$2</span><span class="s2">&quot;</span>
+<span class="k">fi</span>
+
+<span class="c1"># Put the `lotus` singularity image in a container and run it.</span>
+<span class="c1"># The /scratch folder is already binded to the $DOCKER_PROJ_DIR through the env variable $SINGULARITY_BINDPATH,</span>
+<span class="c1"># so it will find the projects in /scratch/$USER/Lotus automatically.</span>
+
+singularity run <span class="nv">$LOTUS_BIN</span>/lotus.sif <span class="nv">$@</span>
+</pre></div>
+</div>
+<p><strong>subLotus</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="c1">#SBATCH --ntasks=16                                 # Request number of processes (if &gt;40, multiple nodes are used in Iridis5)</span>
+<span class="c1">#SBATCH --job-name=test                             # Job name</span>
+<span class="c1">#SBATCH --time=00:10:00                             # Walltime</span>
+<span class="c1">#SBATCH --mail-type=ALL                             # Mail notifications</span>
+
+module load singularity                             <span class="c1"># Load the singularity mode</span>
+
+runSingularity <span class="nv">$SLURM_NTASKS</span> <span class="nb">test</span>   <span class="c1"># run the singularity container with the number of processes specified above</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="docker-instalation">
+<span id="docker"></span><h2>Docker instalation<a class="headerlink" href="#docker-instalation" title="Permalink to this headline">¶</a></h2>
+<p><strong>1.</strong> <a class="reference external" href="https://docs.docker.com/install/linux/docker-ce/ubuntu/">Install Docker</a></p>
+<p><strong>2.</strong> <a class="reference external" href="https://docs.docker.com/install/linux/linux-postinstall/">Manage Docker as a non-root user</a></p>
+<p>Note that the files created during the simulation will still have root privileges. These may need to be restored to user privileges for post-processing reasons as explained in the remarks in <strong>11</strong>.</p>
+<p><strong>3.</strong> Test Docker:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ docker run hello-world
+</pre></div>
+</div>
+<p><strong>4.</strong> Pull the Docker image based on Ubuntu which contains the Lotus solver (you need to be added as collaborator in the Docker Hub repository, send me an <a class="reference external" href="mailto:b&#46;fontgarcia&#37;&#52;&#48;soton&#46;ac&#46;uk">email</a>)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ docker login --username your_username
+$ docker pull bfont/lotus
+</pre></div>
+</div>
+<p><strong>5.</strong> Create a working directory and the required subdirectories</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkdir -p $HOME/Workspace/docker/Lotus/bin
+$ mkdir $HOME/Workspace/docker/Lotus/projects
+</pre></div>
+</div>
+<p><strong>6.</strong> Add the following lines (environmental variables) in <code class="docutils literal notranslate"><span class="pre">~/.profile</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ export LOCAL_LOTUS_DIR=$HOME&#39;/Workspace/docker/Lotus&#39;
+$ export LOCAL_PROJ_DIR=$LOCAL_LOTUS_DIR&#39;/projects&#39;
+$ export DOCKER_PROJ_DIR=&#39;/app/projects&#39;
+$ export PATH=$PATH:$LOCAL_LOTUS_DIR/bin
+</pre></div>
+</div>
+<p><strong>7.</strong> Source <code class="docutils literal notranslate"><span class="pre">~/.profile</span></code> in <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code> adding the following line in <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ . ~/.profile
+</pre></div>
+</div>
+<p><strong>8.</strong> Copy from this directory the following scripts: <code class="docutils literal notranslate"><span class="pre">bin/runDocker</span></code>, <code class="docutils literal notranslate"><span class="pre">bin/runStat</span></code>, <code class="docutils literal notranslate"><span class="pre">lotus.f90</span></code>, and <code class="docutils literal notranslate"><span class="pre">stat.py</span></code>. Put them in the relevant directory which should look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$LOCAL_LOTUS_DIR/
+lotus.f90
+stat.py
+bin/
+    runDocker
+    runStat
+projects/
+</pre></div>
+</div>
+<p>The script <code class="docutils literal notranslate"><span class="pre">runDocker</span></code> is a wrap around <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code>, which function is to create a container from the Docker image you have just pulled. Also, <code class="docutils literal notranslate"><span class="pre">runDocker</span></code> passes the arguments normally used with <code class="docutils literal notranslate"><span class="pre">runLotus</span></code> to the Docker container and launches <code class="docutils literal notranslate"><span class="pre">runStat</span></code> if the <code class="docutils literal notranslate"><span class="pre">stat.py</span></code> python is present. The script <code class="docutils literal notranslate"><span class="pre">runStat</span></code> takes care of actually running <code class="docutils literal notranslate"><span class="pre">stat.py</span></code>, which finally provides the post-processing results.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> script (no need to copy this one) is the “Docker Makefile” that have been used to create the <code class="docutils literal notranslate"><span class="pre">bfont/lotus</span></code> image. It is informative to have a look at it and see how the Lotus docker image is created. Ultimatelly, the image is created using the command: <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">build</span> <span class="pre">-t</span> <span class="pre">bfont/lotus</span> <span class="pre">.`</span></code></p>
+<p><strong>9.</strong> Run a simulation using the <code class="docutils literal notranslate"><span class="pre">lotus.f90</span></code> script in the Lotus folder with the <code class="docutils literal notranslate"><span class="pre">runDocker</span></code> bash script:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ runDocker 4 test1
+</pre></div>
+</div>
+<p><strong>10.</strong> Run again restarting from <code class="docutils literal notranslate"><span class="pre">test1</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ runDocker 4 test2 test1
+</pre></div>
+</div>
+<p><strong>11.</strong> Remarks:</p>
+<ul class="simple">
+<li><p>When using <code class="docutils literal notranslate"><span class="pre">runDocker</span></code>, the specified project folder will always be located in <code class="docutils literal notranslate"><span class="pre">$LOCAL_LOTUS_DIR/projects</span></code>.</p></li>
+<li><p>If you are restarting from another simulation, for example <code class="docutils literal notranslate"><span class="pre">test1</span></code>,  this needs to be located in <code class="docutils literal notranslate"><span class="pre">$LOCAL_LOTUS_DIR/projects</span></code>.</p></li>
+<li><p>Even after following step <strong>2</strong>, the project folders will always have root privileges. To be able to run the post-processing python script, you will need to introduce your root password to change that folder privilages after the simulation finishes (this change of privileges is called from the runDocker script using <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">chown</span> <span class="pre">-R</span> <span class="pre">$USER:$USER</span> <span class="pre">$LOCAL_PROJ_DIR/project_directory</span></code>). If you fail to do so (long simulation not paying attention at when it finishes), no worries - you can do it manually afterwards with</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo chown -R <span class="nv">$USER</span>:<span class="nv">$USER</span> <span class="nv">$LOCAL_PROJ_DIR</span>/project_directory
+$ <span class="nb">cd</span> <span class="nv">$LOCAL_PROJ_DIR</span>/project_directory
+$ cp <span class="nv">$LOCAL_LOTUS_DIR</span>/stat.py .
+$ runStat
+</pre></div>
+</div>
+</div>
 </div>
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="test-case.html" class="btn btn-neutral float-right" title="Test Case" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="simulations/index.html" class="btn btn-neutral float-right" title="Simulations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="introduction.html" class="btn btn-neutral" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="introduction.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -272,11 +612,11 @@ $ make
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright .
+        &copy; Copyright 
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -289,36 +629,15 @@ $ make
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../',
-            VERSION:'1.0',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../_static/jquery.js"></script>
-      <script type="text/javascript" src="../_static/underscore.js"></script>
-      <script type="text/javascript" src="../_static/doctools.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-  
-
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
+
+  
+  
+    
    
 
 </body>

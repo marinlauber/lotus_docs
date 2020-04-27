@@ -1,0 +1,807 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Field &mdash; Lotus 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Vector" href="vector.html" />
+    <link rel="prev" title="Body" href="body.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Lotus
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../simulations/index.html">Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grid/index.html">Grid</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">OOP Fluid Solver</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="fluid.html">Fluid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="body.html">Body</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Field</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#eqfield">eqField</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#eqscalar">eqScalar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#initalise">Initalise</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#size">Size</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#point">Point</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#applybc">ApplyBC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#inner">Inner</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pos">Pos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#global">Global</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#local">Local</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#filter">Filter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#max">Max</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mean">Mean</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#perturb">Perturb</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ddn">ddn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#integral">Integral</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#evaluate">Evaluate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#at">At</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spread">Spread</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#average">Average</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#limits">Limits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#xy-average">XY-average</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#asymetry">Asymetry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#distribute">Distribute</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="vector.html">Vector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MGsolver.html">MGsolver</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../update-the-docs.html">Updating the documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Lotus</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">OOP Fluid Solver</a> &raquo;</li>
+        
+      <li>Field</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/manual/OOP/field.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="field">
+<span id="manual-oop-field"></span><h1>Field<a class="headerlink" href="#field" title="Permalink to this headline">¶</a></h1>
+<p>This routine defines a continuum mechanical field and basic operators on that field. The fundamental data is a simple 3-D array, but the boundary values, number of spacial dimensions, number of points, and cell location are also included. The fundamental operator is <code class="docutils literal notranslate"><span class="pre">point()</span></code> which creates a pointer to a subset of data in the field. Other key operators initiate, copy, apply boundary conditions, and query.</p>
+<p>The following shows the different attributes and procedures that are contained in the field module.</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">fieldMod</span>
+    <span class="c">!</span>
+    <span class="c">! -- number of ghost cells added outside the domain</span>
+    <span class="c">!       note if( QUICK &amp; MPI ) ghosts&gt;1 !!</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">parameter</span><span class="p">,</span><span class="k">private</span> <span class="kd">::</span> <span class="n">ghosts</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="c">!</span>
+    <span class="c">! -- Field datatype</span>
+    <span class="k">type</span><span class="p">,</span><span class="k">public</span> <span class="kd">::</span> <span class="n">field</span>
+        <span class="kt">real</span><span class="p">,</span><span class="k">allocatable</span> <span class="kd">::</span> <span class="n">p</span><span class="p">(:,:,:)</span>     <span class="c">! data array including ghosts</span>
+        <span class="kt">integer</span><span class="p">,</span><span class="k">private</span>  <span class="kd">::</span> <span class="n">n</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">=</span><span class="mi">1</span>       <span class="c">! number of points in the array</span>
+        <span class="kt">integer</span><span class="p">,</span><span class="k">private</span>  <span class="kd">::</span> <span class="n">location</span><span class="o">=</span><span class="mi">0</span>   <span class="c">! location of data in FV cell</span>
+                                         <span class="c">!   0 =&gt; cell center (ie. scalar field)</span>
+                                         <span class="c">!   1,2,3 =&gt; x,y,z face (ie. vector component)</span>
+        <span class="kt">real</span>    <span class="kd">::</span> <span class="n">bound_val</span><span class="o">=</span><span class="mf">0.</span>          <span class="c">! boundary value</span>
+        <span class="kt">integer</span> <span class="kd">::</span> <span class="k">is</span><span class="p">,</span><span class="n">ie</span><span class="p">,</span><span class="n">js</span><span class="p">,</span><span class="n">je</span><span class="p">,</span><span class="n">ks</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">ke</span><span class="o">=</span><span class="mi">1</span> <span class="c">! array bounds</span>
+        <span class="kt">integer</span> <span class="kd">::</span> <span class="n">ndims</span><span class="o">=</span><span class="mi">3</span>               <span class="c">! number of spacial dimensions</span>
+        <span class="kt">logical</span> <span class="kd">::</span> <span class="k">exit</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.</span>          <span class="c">! convection exit</span>
+    <span class="k">contains</span>
+<span class="k">        procedure</span><span class="p">,</span><span class="k">private</span> <span class="kd">::</span> <span class="n">eqField</span><span class="p">,</span> <span class="n">eqScalar</span>
+        <span class="k">generic</span><span class="p">,</span><span class="k">public</span>    <span class="kd">::</span> <span class="n">assignment</span><span class="p">(</span><span class="o">=</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">eqField</span><span class="p">,</span><span class="n">eqScalar</span>
+        <span class="k">procedure</span><span class="p">,</span><span class="k">public</span>  <span class="kd">::</span> <span class="n">init</span><span class="p">,</span> <span class="n">size</span> <span class="o">=&gt;</span> <span class="n">size1</span><span class="p">,</span> <span class="n">point</span><span class="p">,</span> <span class="n">applyBC</span><span class="p">,</span> <span class="n">inner</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">global</span><span class="p">,</span> <span class="n">local</span>
+        <span class="k">procedure</span><span class="p">,</span><span class="k">public</span>  <span class="kd">::</span> <span class="n">filter</span><span class="p">,</span> <span class="nb">max</span> <span class="o">=&gt;</span> <span class="n">max1</span> <span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">perturb</span><span class="p">,</span> <span class="n">ddn</span><span class="p">,</span> <span class="n">integral</span><span class="p">,</span> <span class="n">eval</span><span class="p">,</span> <span class="n">at</span>
+        <span class="k">procedure</span><span class="p">,</span><span class="k">public</span>  <span class="kd">::</span> <span class="nb">spread</span> <span class="o">=&gt;</span> <span class="n">spread1</span><span class="p">,</span> <span class="n">average</span><span class="p">,</span> <span class="n">limits</span><span class="p">,</span> <span class="n">xy_ave</span><span class="p">,</span> <span class="n">asymmetry</span><span class="p">,</span> <span class="n">distribute</span>
+    <span class="k">end type </span><span class="n">field</span>
+<span class="k">end module </span><span class="n">fieldMod</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><a class="reference internal" href="#eqfield"><span class="std std-ref">eqField</span></a></p></li>
+<li><p><a class="reference internal" href="#eqscalar"><span class="std std-ref">eqScalar</span></a></p></li>
+<li><p><a class="reference internal" href="fluid.html#initialise"><span class="std std-ref">initalise</span></a></p></li>
+<li><p><a class="reference internal" href="#size"><span class="std std-ref">Size</span></a></p></li>
+<li><p><a class="reference internal" href="#point"><span class="std std-ref">Point</span></a></p></li>
+<li><p><a class="reference internal" href="#applybc"><span class="std std-ref">ApplyBC</span></a></p></li>
+<li><p><a class="reference internal" href="#inner"><span class="std std-ref">Inner</span></a></p></li>
+<li><p><a class="reference internal" href="#pos"><span class="std std-ref">Pos</span></a></p></li>
+<li><p><a class="reference internal" href="#global"><span class="std std-ref">Global</span></a></p></li>
+<li><p><a class="reference internal" href="#local"><span class="std std-ref">Local</span></a></p></li>
+<li><p><a class="reference internal" href="#filter"><span class="std std-ref">Filter</span></a></p></li>
+<li><p><a class="reference internal" href="#max"><span class="std std-ref">Max</span></a></p></li>
+<li><p><a class="reference internal" href="#mean"><span class="std std-ref">Mean</span></a></p></li>
+<li><p><a class="reference internal" href="#perturb"><span class="std std-ref">Perturb</span></a></p></li>
+<li><p><a class="reference internal" href="#ddn"><span class="std std-ref">ddn</span></a></p></li>
+<li><p><a class="reference internal" href="#integral"><span class="std std-ref">Integral</span></a></p></li>
+<li><p><a class="reference internal" href="#eval"><span class="std std-ref">Evaluate</span></a></p></li>
+<li><p><a class="reference internal" href="#at"><span class="std std-ref">At</span></a></p></li>
+<li><p><a class="reference internal" href="#spread"><span class="std std-ref">Spread</span></a></p></li>
+<li><p><a class="reference internal" href="#average"><span class="std std-ref">Average</span></a></p></li>
+<li><p><a class="reference internal" href="#limits"><span class="std std-ref">Limits</span></a></p></li>
+<li><p><a class="reference internal" href="#xy-ave"><span class="std std-ref">XY-average</span></a></p></li>
+<li><p><a class="reference internal" href="#asymetry"><span class="std std-ref">Asymetry</span></a></p></li>
+<li><p><a class="reference internal" href="#distribute"><span class="std std-ref">Distribute</span></a></p></li>
+</ul>
+<div class="section" id="eqfield">
+<span id="id1"></span><h2>eqField<a class="headerlink" href="#eqfield" title="Permalink to this headline">¶</a></h2>
+<p>Sets all attributed of field <code class="docutils literal notranslate"><span class="pre">a</span></code> equal to that of field <code class="docutils literal notranslate"><span class="pre">b</span></code>.</p>
+<dl class="function">
+<dt id="eqField">
+<code class="sig-name descname">eqField</code><span class="sig-paren">(</span><em class="sig-param">a</em>, <em class="sig-param">b</em><span class="sig-paren">)</span><a class="headerlink" href="#eqField" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>Class</em><em>[</em><em>field</em><em>]</em>) – field update</p></li>
+<li><p><strong>b</strong> (<em>Class</em><em>[</em><em>field</em><em>]</em>) – field to equal</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>N-A</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p>This essentially allows you to write something like :</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">flow</span><span class="p">%</span><span class="n">pressure</span> <span class="o">=</span> <span class="n">flow</span><span class="p">%</span><span class="n">sigma</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This re-assignes the binary opertaor “=” when aplied to a field type, this is why you are able to write the previous line of code.</p>
+</div>
+</div>
+<div class="section" id="eqscalar">
+<span id="id2"></span><h2>eqScalar<a class="headerlink" href="#eqscalar" title="Permalink to this headline">¶</a></h2>
+<p>Sets value of field to a given scalar value. This is handy to initialise a field with a specific value.</p>
+<dl class="function">
+<dt id="eqScalar">
+<code class="sig-name descname">eqScalar</code><span class="sig-paren">(</span><em class="sig-param">a</em>, <em class="sig-param">P</em><span class="sig-paren">)</span><a class="headerlink" href="#eqScalar" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>Class</em><em>[</em><em>field</em><em>]</em>) – field update</p></li>
+<li><p><strong>P</strong> (<em>float</em>) – value to set field to</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>N-A</p>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">flow</span><span class="p">%</span><span class="n">pressure</span> <span class="o">=</span> <span class="mf">1.0</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="initalise">
+<span id="initialise"></span><h2>Initalise<a class="headerlink" href="#initalise" title="Permalink to this headline">¶</a></h2>
+<p>This allocates an array <code class="docutils literal notranslate"><span class="pre">p(:,:,:)</span></code> in memory of size <code class="docutils literal notranslate"><span class="pre">n(3)+2*ghosts</span></code>. The default ghost size is 2. This allows each processor working with his own sub-set of the data to be able to perform finit-difference, filtering, and so on wihtout having to communicate with neighbouring processors.</p>
+<dl class="function">
+<dt>
+<code class="sig-name descname">initalise</code><span class="sig-paren">(</span><em class="sig-param">a</em>, <em class="sig-param">n</em>, <em class="sig-param">P</em>, <em class="sig-param">l</em>, <em class="sig-param">b</em>, <em class="sig-param">exit</em><span class="sig-paren">)</span></dt>
+<dd><p>Initalise a field</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>Class</em><em>[</em><em>field</em><em>]</em>) – fluid class to update</p></li>
+<li><p><strong>n</strong> (<em>Array</em><em>[</em><em>int</em><em>]</em>) – number of point in the field</p></li>
+<li><p><strong>P</strong> (<em>Optional</em><em>[</em><em>]</em>) – boundary value</p></li>
+<li><p><strong>l</strong> (<em>Optional</em><em>[</em><em>]</em>) – field location in cells</p></li>
+<li><p><strong>b</strong> (<em>Optional</em><em>[</em><em>logical</em><em>]</em>) – set field to boundary</p></li>
+<li><p><strong>exit</strong> (<em>Optional</em><em>[</em><em>logical</em><em>]</em>) – exit type</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>N-A</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p>The default storage location is cell-centred (<code class="docutils literal notranslate"><span class="pre">l=0.</span></code>). This is only valid for scalar-valued fields.</p>
+<p>The array bounds <code class="docutils literal notranslate"><span class="pre">a%is</span></code>, <code class="docutils literal notranslate"><span class="pre">a%ie</span></code>, etc. are the indices of the first and last values of the field, not including the halos.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">a%point()</span></code> and <code class="docutils literal notranslate"><span class="pre">a%p(a%is:a%ie,</span> <span class="pre">a%js:a%je,</span> <span class="pre">a%ks:a%ke)</span></code> represent the same sub-set of the array, the only difference is that the former returns a pointer, and the later an array.</p>
+</div>
+</div>
+<div class="section" id="size">
+<span id="id3"></span><h2>Size<a class="headerlink" href="#size" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt>
+<code class="sig-name descname">size</code><span class="sig-paren">(</span><em class="sig-param">a</em><span class="sig-paren">)</span></dt>
+<dd><p>Helper function that return the size of the field, excluding halos.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>a</strong> (<em>Class</em><em>[</em><em>field</em><em>]</em>) – field</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Array[int]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p>This is usefull to initialize arrays of the same size</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">pressure</span><span class="p">%</span><span class="n">init</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">sigma</span><span class="p">%</span><span class="n">size</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="point">
+<span id="id4"></span><h2>Point<a class="headerlink" href="#point" title="Permalink to this headline">¶</a></h2>
+<p>Point to a subsection of the data in the field. By default this point to the field exclusing the halos, see figure below. By specifying a shift, it is very easy to generate finite differnece, filters, and so on.</p>
+<dl class="function">
+<dt>
+<code class="sig-name descname">point</code><span class="sig-paren">(</span><em class="sig-param">a</em>, <em class="sig-param">i</em>, <em class="sig-param">s</em>, <em class="sig-param">arg</em>, <em class="sig-param">all</em><span class="sig-paren">)</span></dt>
+<dd><p>Point to a subsection of the data in the field.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>Class</em><em>[</em><em>field</em><em>]</em>) – field</p></li>
+<li><p><strong>i</strong> (<em>Optional</em><em>[</em><em>int</em><em>]</em>) – 1D shift dircetion</p></li>
+<li><p><strong>s</strong> (<em>Optional</em><em>[</em><em>float</em><em>]</em>) – 1D shift magnitude</p></li>
+<li><p><strong>arg</strong> (<em>Optional</em><em>[</em><em>array</em><em>(</em><em>int</em><em>)</em><em>]</em>) – 3D shift</p></li>
+<li><p><strong>all</strong> (<em>Optional</em><em>[</em><em>logical</em><em>]</em>) – include ghost points or not</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Pointer[real]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p>They logical argument <code class="docutils literal notranslate"><span class="pre">all</span></code> allows to point to the whole array, including halos.</p>
+<p>If not given, the default shift magnitude <code class="docutils literal notranslate"><span class="pre">s</span></code> is 1. Both positive and negative shift directions can be specified. If a 3D shift is specified, an array containing the shift magnitude must me passed, i.e. <code class="docutils literal notranslate"><span class="pre">(\1,</span> <span class="pre">0,</span> <span class="pre">0\)</span></code>, which would be equivalent to a shift in the x-direction, with a magnitude of 1 if not explicitley specified (using <code class="docutils literal notranslate"><span class="pre">s</span></code>).</p>
+<a class="reference internal image-reference" href="../../_images/Ghost_cells.png"><img alt="MPI ghost cell decomposition schematic." src="../../_images/Ghost_cells.png" style="width: 800px;" /></a>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function returns a pointer to the subsection of the array that you specified, it can therefore only be assigned to an other pointer, using <code class="docutils literal notranslate"><span class="pre">ptr</span> <span class="pre">=&gt;</span> <span class="pre">filed%point()</span></code>.</p>
+</div>
+</div>
+<div class="section" id="applybc">
+<span id="id5"></span><h2>ApplyBC<a class="headerlink" href="#applybc" title="Permalink to this headline">¶</a></h2>
+<p>Apply boundary conditions to the field. A zero derivative condition is set by default. Fields on a cell face (location&gt;0) have the boundary value applied to that face.</p>
+<dl class="function">
+<dt id="applyBC">
+<code class="sig-name descname">applyBC</code><span class="sig-paren">(</span><em class="sig-param">a</em>, <em class="sig-param">dt</em>, <em class="sig-param">b</em><span class="sig-paren">)</span><a class="headerlink" href="#applyBC" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply boundary conditions on the field</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>Class</em><em>[</em><em>field</em><em>]</em>) – field class on which to apply BC</p></li>
+<li><p><strong>dt</strong> (<em>Optional</em><em>[</em><em>float</em><em>]</em>) – time-step</p></li>
+<li><p><strong>b</strong> (<em>Optional</em><em>[</em><em>Class</em><em>[</em><em>field</em><em>]</em><em>]</em>) – boundary value</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>N-A</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p>This function also ensures that the domain fluxes match the nominal fluxes (if specified), if not, it corrects it.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In addition to handeling the boundary conditions of the problem, this function deals with communicating halos values between processors via the <code class="docutils literal notranslate"><span class="pre">myMPI.f90</span></code> module.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Relies on the <code class="docutils literal notranslate"><span class="pre">bound(a,</span> <span class="pre">i,</span> <span class="pre">j,</span> <span class="pre">shift)</span></code> function, which returns a pointer that points to the boundary cell <code class="docutils literal notranslate"><span class="pre">j</span></code>, ghost or adjacent (-1/1), on the <code class="docutils literal notranslate"><span class="pre">i</span></code> face. If specified, <code class="docutils literal notranslate"><span class="pre">shift</span></code> shifts the pointer.</p>
+</div>
+</div>
+<div class="section" id="inner">
+<span id="id6"></span><h2>Inner<a class="headerlink" href="#inner" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt>
+<code class="sig-name descname">inner</code><span class="sig-paren">(</span><em class="sig-param">a</em>, <em class="sig-param">b</em><span class="sig-paren">)</span></dt>
+<dd><p>Take the inner product of two fields excluding ghost values</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>Class</em><em>[</em><em>field</em><em>]</em>) – field use for inner product</p></li>
+<li><p><strong>b</strong> (<em>Optional</em><em>[</em><em>field</em><em>]</em>) – second field to use in inner product</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Scalar[real]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p>If a second field <code class="docutils literal notranslate"><span class="pre">b</span></code> is specified, the inner-product is take between <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code>, otherwise the inner-product is take with <code class="docutils literal notranslate"><span class="pre">a</span></code> and itself. Mathematically, we are doing :</p>
+<div class="math notranslate nohighlight">
+\begin{equation}
+   c = \langle a, b\rangle = \int a \, b  \, dx \simeq  \sum_{i=1}^{N}a_ib_i
+\end{equation}</div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This performs a mpi sum.</p>
+</div>
+</div>
+<div class="section" id="pos">
+<span id="id7"></span><h2>Pos<a class="headerlink" href="#pos" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt>
+<code class="sig-name descname">pos</code><span class="sig-paren">(</span><em class="sig-param">a</em>, <em class="sig-param">i</em>, <em class="sig-param">j</em>, <em class="sig-param">k</em><span class="sig-paren">)</span></dt>
+<dd><p>Returns the physical position (x,y,z) of cell with indices (i,j,k)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>Optional</em><em>[</em><em>field</em><em>]</em>) – field</p></li>
+<li><p><strong>i</strong> (<em>integer</em>) – x-direction index</p></li>
+<li><p><strong>j</strong> (<em>integer</em>) – y-direction index</p></li>
+<li><p><strong>k</strong> (<em>integer</em>) – z-direction index</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Array[real]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p>The position is adjusted if the field <code class="docutils literal notranslate"><span class="pre">a</span></code> is cell- or faced-centered. This is used to interpolate a field at a point, for example.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">a%pos(1,1,1)</span></code> gives the position of the ghost cell <code class="docutils literal notranslate"><span class="pre">a%p(1,1,1)</span></code></p>
+</div>
+</div>
+<div class="section" id="global">
+<span id="id8"></span><h2>Global<a class="headerlink" href="#global" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt>
+<code class="sig-name descname">global</code><span class="sig-paren">(</span><em class="sig-param">a</em>, <em class="sig-param">i</em>, <em class="sig-param">coords</em><span class="sig-paren">)</span></dt>
+<dd><p>Convert between local array index to gloabl array index.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>Class</em><em>[</em><em>field</em><em>]</em>) – field class on which to operate</p></li>
+<li><p><strong>i</strong> (<em>Array</em><em>[</em><em>integer</em><em>]</em>) – local index</p></li>
+<li><p><strong>coords</strong> (<em>Optional</em><em>[</em><em>Array</em><em>[</em><em>integer</em><em>]</em><em>]</em>) – MPI coordinate</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Array[integer]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p>Map the local array index to the global array index of the current MPI decomposition. If no MPI decomposition are used (serial simulation), local and global array index are identical.</p>
+<p><code class="docutils literal notranslate"><span class="pre">coords</span></code> can also be passed, this can be usefull if you want to know the gloal array index of an index in another MPI part.</p>
+</div>
+<div class="section" id="local">
+<span id="id9"></span><h2>Local<a class="headerlink" href="#local" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt>
+<code class="sig-name descname">local</code><span class="sig-paren">(</span><em class="sig-param">a</em>, <em class="sig-param">i</em>, <em class="sig-param">coords</em><span class="sig-paren">)</span></dt>
+<dd><p>convert between globlal to local array index</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>Class</em><em>[</em><em>field</em><em>]</em>) – field class on which to operate</p></li>
+<li><p><strong>i</strong> (<em>Array</em><em>[</em><em>integer</em><em>]</em>) – local index</p></li>
+<li><p><strong>coords</strong> (<em>Optional</em><em>[</em><em>Array</em><em>[</em><em>integer</em><em>]</em><em>]</em>) – MPI coordinate</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Array[integer]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p>inverse mapping to <code class="docutils literal notranslate"><span class="pre">global</span></code>.</p>
+</div>
+<div class="section" id="filter">
+<span id="id10"></span><h2>Filter<a class="headerlink" href="#filter" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt>
+<code class="sig-name descname">filter</code><span class="sig-paren">(</span><em class="sig-param">a</em><span class="sig-paren">)</span></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>a</strong> (<em>Optional</em><em>[</em><em>field</em><em>]</em>) – field</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>N-A</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="max">
+<span id="id11"></span><h2>Max<a class="headerlink" href="#max" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt>
+<code class="sig-name descname">max</code><span class="sig-paren">(</span><em class="sig-param">a</em><span class="sig-paren">)</span></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>a</strong> (<em>Optional</em><em>[</em><em>field</em><em>]</em>) – field</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>N-A</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="mean">
+<span id="id12"></span><h2>Mean<a class="headerlink" href="#mean" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt>
+<code class="sig-name descname">mean</code><span class="sig-paren">(</span><em class="sig-param">a</em><span class="sig-paren">)</span></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>a</strong> (<em>Optional</em><em>[</em><em>field</em><em>]</em>) – field</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>N-A</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="perturb">
+<span id="id13"></span><h2>Perturb<a class="headerlink" href="#perturb" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt>
+<code class="sig-name descname">perturb</code><span class="sig-paren">(</span><em class="sig-param">a</em><span class="sig-paren">)</span></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>a</strong> (<em>Optional</em><em>[</em><em>field</em><em>]</em>) – field</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>N-A</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="ddn">
+<span id="id14"></span><h2>ddn<a class="headerlink" href="#ddn" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt>
+<code class="sig-name descname">ddn</code><span class="sig-paren">(</span><em class="sig-param">a</em>, <em class="sig-param">n</em>, <em class="sig-param">b</em><span class="sig-paren">)</span></dt>
+<dd><p>Take the normal derivative of a field</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>Class</em><em>[</em><em>field</em><em>]</em>) – field to take ddn on</p></li>
+<li><p><strong>n</strong> (<em>Class</em><em>[</em><em>field</em><em>]</em>) – normal field</p></li>
+<li><p><strong>b</strong> (<em>Class</em><em>[</em><em>Field</em><em>]</em>) – resulting field</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p><code class="docutils literal notranslate"><span class="pre">n</span></code> is a field (actually a vector) that contains the normal direction coefficient, such that the dot product of this field with the gradient of <code class="docutils literal notranslate"><span class="pre">a%p</span></code> gives the normal derivative of the field.</p>
+<p>In our case, <code class="docutils literal notranslate"><span class="pre">n</span></code> is provided by the body, and its coefficient are calculated once, and updated if needed.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>assuming uniform since the body should be in a uniform grid region</p>
+</div>
+</div>
+<div class="section" id="integral">
+<span id="id15"></span><h2>Integral<a class="headerlink" href="#integral" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt>
+<code class="sig-name descname">integral</code><span class="sig-paren">(</span><em class="sig-param">a</em>, <em class="sig-param">pow mean</em><span class="sig-paren">)</span></dt>
+<dd><p>Integral of the n-th power of a field</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>Class</em><em>[</em><em>field</em><em>]</em>) – field</p></li>
+<li><p><strong>pow</strong> (<em>real</em>) – power</p></li>
+<li><p><strong>mean</strong> (<em>Optional</em><em>[</em><em>logical</em><em>]</em>) – compute mean value</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>real</p>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="math notranslate nohighlight">
+\begin{equation}
+   c =  \int a^{pow} \, dV \simeq  \sum_{i=1}^{N}a^{pow}_i dv_i
+\end{equation}</div></div>
+<div class="section" id="evaluate">
+<span id="eval"></span><h2>Evaluate<a class="headerlink" href="#evaluate" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt>
+<code class="sig-name descname">eval</code><span class="sig-paren">(</span><em class="sig-param">am fn</em><span class="sig-paren">)</span></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>a</strong> (<em>Class</em><em>[</em><em>field</em><em>]</em>) – field</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>N-A</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="at">
+<span id="id16"></span><h2>At<a class="headerlink" href="#at" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt>
+<code class="sig-name descname">at</code><span class="sig-paren">(</span><em class="sig-param">a</em><span class="sig-paren">)</span></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>a</strong> (<em>Class</em><em>[</em><em>field</em><em>]</em>) – field</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>N-A</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="spread">
+<span id="id17"></span><h2>Spread<a class="headerlink" href="#spread" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt>
+<code class="sig-name descname">spread</code><span class="sig-paren">(</span><em class="sig-param">a</em><span class="sig-paren">)</span></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>a</strong> (<em>Class</em><em>[</em><em>field</em><em>]</em>) – field</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>N-A</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="average">
+<span id="id18"></span><h2>Average<a class="headerlink" href="#average" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt>
+<code class="sig-name descname">average</code><span class="sig-paren">(</span><em class="sig-param">a</em><span class="sig-paren">)</span></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>a</strong> (<em>Class</em><em>[</em><em>field</em><em>]</em>) – field</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>N-A</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="limits">
+<span id="id19"></span><h2>Limits<a class="headerlink" href="#limits" title="Permalink to this headline">¶</a></h2>
+<p>This function returns the array indices of the field on which the data is stored, excluding the halos. This is useful to set <code class="docutils literal notranslate"><span class="pre">do</span></code> loops over an array, or to operate on its content without having to use pointers.</p>
+<dl class="function">
+<dt>
+<code class="sig-name descname">limits</code><span class="sig-paren">(</span><em class="sig-param">a</em>, <em class="sig-param">is</em>, <em class="sig-param">ie</em>, <em class="sig-param">js</em>, <em class="sig-param">je</em>, <em class="sig-param">ks</em>, <em class="sig-param">ke</em><span class="sig-paren">)</span></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>Class</em><em>[</em><em>field</em><em>]</em>) – field</p></li>
+<li><p><strong>is</strong> (<em>int</em>) – lower limit in i direction</p></li>
+<li><p><strong>ie</strong> (<em>int</em>) – upper limit in i direction</p></li>
+<li><p><strong>js</strong> (<em>int</em>) – lower limit in j direction</p></li>
+<li><p><strong>je</strong> (<em>int</em>) – upper limit in j direction</p></li>
+<li><p><strong>ks</strong> (<em>int</em>) – lower limit in k direction</p></li>
+<li><p><strong>ke</strong> (<em>int</em>) – upper limit in k direction</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>N-A</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="xy-average">
+<span id="xy-ave"></span><h2>XY-average<a class="headerlink" href="#xy-average" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="asymetry">
+<span id="id20"></span><h2>Asymetry<a class="headerlink" href="#asymetry" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt>
+<code class="sig-name descname">asymetry</code><span class="sig-paren">(</span><em class="sig-param">a</em><span class="sig-paren">)</span></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>a</strong> (<em>Class</em><em>[</em><em>field</em><em>]</em>) – field</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>N-A</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="distribute">
+<span id="id21"></span><h2>Distribute<a class="headerlink" href="#distribute" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt>
+<code class="sig-name descname">distribute</code><span class="sig-paren">(</span><em class="sig-param">a</em><span class="sig-paren">)</span></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>a</strong> (<em>class</em><em>[</em><em>field</em><em>]</em>) – field</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>N-A</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p>Relevant files within the repos directory:</p>
+<ul class="simple">
+<li><p>oop/fluid.f90</p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="vector.html" class="btn btn-neutral float-right" title="Vector" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="body.html" class="btn btn-neutral float-left" title="Body" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

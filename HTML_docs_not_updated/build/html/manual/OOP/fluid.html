@@ -1,0 +1,510 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Fluid &mdash; Lotus 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Body" href="body.html" />
+    <link rel="prev" title="OOP Fluid Solver" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Lotus
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../simulations/index.html">Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grid/index.html">Grid</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">OOP Fluid Solver</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Fluid</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#initalise">initalise</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#update">update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#write">write</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reset-u0">reset u0</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="body.html">Body</a></li>
+<li class="toctree-l2"><a class="reference internal" href="field.html">Field</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vector.html">Vector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MGsolver.html">MGsolver</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../update-the-docs.html">Updating the documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Lotus</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">OOP Fluid Solver</a> &raquo;</li>
+        
+      <li>Fluid</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/manual/OOP/fluid.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="fluid">
+<span id="manual-oop-fluid"></span><h1>Fluid<a class="headerlink" href="#fluid" title="Permalink to this headline">¶</a></h1>
+<p>The fluid module is the primary building-block of Lotus. It holds the velocity and pressure fields, as well as the Poisson solver data. It also contains subroutines that initalize, update and write different attributes of the fluid attributes.</p>
+<p>The following shows the different attributes and procedures that are contained in the fluid module.</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">fluidMod</span>
+   <span class="k">use </span><span class="n">fieldMod</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">field</span>
+   <span class="k">use </span><span class="n">vectorMod</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">vfield</span>
+   <span class="k">use </span><span class="n">MGsolverMod</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">MGsolver</span>
+   <span class="k">use </span><span class="n">bodyMod</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">body</span>
+   <span class="c">!</span>
+   <span class="c">! -- Basic fluid data type</span>
+   <span class="k">type</span> <span class="kd">::</span> <span class="n">fluid</span>
+      <span class="k">type</span><span class="p">(</span><span class="n">vfield</span><span class="p">)</span>   <span class="kd">::</span> <span class="n">velocity</span>         <span class="c">! velocity field</span>
+      <span class="k">type</span><span class="p">(</span><span class="n">field</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">pressure</span>         <span class="c">! pressure field</span>
+      <span class="k">type</span><span class="p">(</span><span class="n">MGsolver</span><span class="p">)</span> <span class="kd">::</span> <span class="n">psolver</span>          <span class="c">! Poisson solver</span>
+      <span class="k">type</span><span class="p">(</span><span class="n">field</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">sigma</span>            <span class="c">! pressure source term</span>
+      <span class="k">type</span><span class="p">(</span><span class="n">vfield</span><span class="p">)</span>   <span class="kd">::</span> <span class="n">u0</span><span class="p">,</span><span class="n">force</span>         <span class="c">! old velocity and force</span>
+      <span class="kt">real</span>           <span class="kd">::</span> <span class="nb">time</span><span class="p">,</span><span class="n">dt</span>          <span class="c">! time and time step</span>
+      <span class="kt">real</span>           <span class="kd">::</span> <span class="n">nu</span><span class="o">=</span><span class="mi">0</span>             <span class="c">! kinematic viscosity</span>
+      <span class="kt">real</span>           <span class="kd">::</span> <span class="n">g</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">=</span><span class="mi">0</span>           <span class="c">! gravitational vector</span>
+      <span class="kt">logical</span>        <span class="kd">::</span> <span class="n">body</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.</span>     <span class="c">! body in flow?</span>
+      <span class="k">type</span><span class="p">(</span><span class="n">vfield</span><span class="p">)</span>   <span class="kd">::</span> <span class="n">mu0</span><span class="p">,</span><span class="n">ub</span>           <span class="c">! body kernel coefficients and velocity</span>
+      <span class="k">type</span><span class="p">(</span><span class="n">vfield</span><span class="p">),</span><span class="k">allocatable</span> <span class="kd">::</span> <span class="n">mu1</span><span class="p">(:)</span> <span class="c">! moment correction coeffs</span>
+      <span class="k">contains</span>
+<span class="k">      procedure</span> <span class="kd">::</span> <span class="n">init</span><span class="p">,</span> <span class="n">update</span><span class="p">,</span> <span class="k">write</span><span class="p">,</span> <span class="n">reset_u0</span>
+   <span class="k">end type </span><span class="n">fluid</span>
+<span class="k">end module </span><span class="n">fluidmod</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><a class="reference internal" href="#initialise"><span class="std std-ref">initalise</span></a></p></li>
+<li><p><a class="reference internal" href="#update"><span class="std std-ref">update</span></a></p></li>
+<li><p><a class="reference internal" href="#write"><span class="std std-ref">write</span></a></p></li>
+<li><p><a class="reference internal" href="#reset"><span class="std std-ref">reset u0</span></a></p></li>
+</ul>
+<div class="section" id="initalise">
+<span id="initialise"></span><h2>initalise<a class="headerlink" href="#initalise" title="Permalink to this headline">¶</a></h2>
+<p>This initalises the fluid class.</p>
+<dl class="function">
+<dt id="init">
+<code class="sig-name descname">init</code><span class="sig-paren">(</span><em class="sig-param">a</em>, <em class="sig-param">n</em>, <em class="sig-param">geom</em>, <em class="sig-param">V</em>, <em class="sig-param">nu</em>, <em class="sig-param">NNin</em>, <em class="sig-param">exit</em><span class="sig-paren">)</span><a class="headerlink" href="#init" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initalises the fluid class</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>fluid</em>) – fluid class to initialize</p></li>
+<li><p><strong>n</strong> (<em>int</em>) – number of cells in each direction</p></li>
+<li><p><strong>geom</strong> (<em>Optional</em><em>[</em><em>body</em><em>]</em>) – geometry class to use for update</p></li>
+<li><p><strong>V</strong> (<em>Optional</em><em>[</em><em>real</em><em>]</em>) – initial conditions, default is zero background velocity</p></li>
+<li><p><strong>nu</strong> (<em>Optional</em><em>[</em><em>real</em><em>]</em>) – fluid viscosity</p></li>
+<li><p><strong>NNin</strong> (<em>Optional</em><em>[</em><em>int</em><em>]</em>) – starting contition</p></li>
+<li><p><strong>exit</strong> (<em>Optional</em><em>[</em><em>logical</em><em>]</em>) – convection exit condition</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>N-A</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p>The size of the field passed to the subroutine <code class="docutils literal notranslate"><span class="pre">n(3)</span></code> is the local field of each of the MPI block. This means that if <code class="docutils literal notranslate"><span class="pre">m(3)</span></code> is the global domain dimensions and <code class="docutils literal notranslate"><span class="pre">b(3)</span></code> is the MPI domain decomposition, the flow is initialized as follows</p>
+<p>for a given <code class="docutils literal notranslate"><span class="pre">geom</span></code> and <code class="docutils literal notranslate"><span class="pre">nu</span></code>.</p>
+<p>When starting a simultion from another one, the <code class="docutils literal notranslate"><span class="pre">NNin</span></code> parameter can be set to take this specific fluid state, and not the most recent one.</p>
+<p>Relevant files within the repos directory:</p>
+<ul class="simple">
+<li><p>oop/fluid.f90</p></li>
+</ul>
+</div>
+<div class="section" id="update">
+<span id="id1"></span><h2>update<a class="headerlink" href="#update" title="Permalink to this headline">¶</a></h2>
+<p>This subtourine updates the fluid equations following 2-nd order BDIM.</p>
+<dl class="function">
+<dt>
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><em class="sig-param">a</em>, <em class="sig-param">geom</em>, <em class="sig-param">V</em>, <em class="sig-param">b</em>, <em class="sig-param">f</em><span class="sig-paren">)</span></dt>
+<dd><p>Update the fluid equations</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>fluid</em>) – fluid class to update</p></li>
+<li><p><strong>geom</strong> (<em>Optional</em><em>[</em><em>body</em><em>]</em>) – geometry class to use for update</p></li>
+<li><p><strong>V</strong> (<em>Optional</em><em>[</em><em>real</em><em>]</em>) – boundary conditions</p></li>
+<li><p><strong>b</strong> (<em>Optional</em><em>[</em><em>real</em><em>]</em>) – body force/acceleration</p></li>
+<li><p><strong>f</strong> (<em>Optional</em><em>[</em><em>vfield</em><em>]</em>) – source term</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>N-A</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p>The fluid update uses a second-order (in time) predictor-corrector method (Heun’s method) with a projection method to ensure that the resulting velocity field is divergence-free.</p>
+<p>The update algortihm can be broken down into 4 steps:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>update the geometry, and the multi-grid solver if needed. This is only called during intialization and if the body moves/changes</p></li>
+</ol>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">geom</span><span class="p">).</span><span class="nb">and</span><span class="p">..</span><span class="nb">not</span><span class="p">.</span><span class="n">geom</span><span class="p">%</span><span class="n">upToDate</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">   call </span><span class="n">geom</span><span class="p">%</span><span class="n">measure</span><span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="n">mu0</span><span class="p">,</span><span class="n">a</span><span class="p">%</span><span class="n">mu1</span><span class="p">,</span><span class="n">a</span><span class="p">%</span><span class="n">ub</span><span class="p">)</span>
+   <span class="k">call </span><span class="n">a</span><span class="p">%</span><span class="n">psolver</span><span class="p">%</span><span class="n">reinit</span><span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="n">mu0</span><span class="p">)</span>
+<span class="k">end if</span>
+</pre></div>
+</div>
+<p>2.update boundary conditions</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">forall</span><span class="p">(</span><span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="n">a</span><span class="p">%</span><span class="n">u0</span><span class="p">%</span><span class="n">ndims</span><span class="p">,</span><span class="nb">present</span><span class="p">(</span><span class="n">V</span><span class="p">))</span>
+   <span class="n">a</span><span class="p">%</span><span class="n">velocity</span><span class="p">%</span><span class="n">e</span><span class="p">(</span><span class="n">d</span><span class="p">)%</span><span class="n">bound_val</span> <span class="o">=</span> <span class="n">V</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+   <span class="n">a</span><span class="p">%</span><span class="n">g</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">V</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="o">-</span><span class="n">a</span><span class="p">%</span><span class="n">u0</span><span class="p">%</span><span class="n">e</span><span class="p">(</span><span class="n">d</span><span class="p">)%</span><span class="n">bound_val</span><span class="p">)</span><span class="o">/</span><span class="n">a</span><span class="p">%</span><span class="n">dt</span>
+<span class="k">end forall</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>add any body force term, this overwrites the acceleration</p></li>
+</ol>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">forall</span><span class="p">(</span><span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="n">a</span><span class="p">%</span><span class="n">u0</span><span class="p">%</span><span class="n">ndims</span><span class="p">,</span><span class="nb">present</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
+   <span class="n">a</span><span class="p">%</span><span class="n">g</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="o">=</span> <span class="n">b</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+<span class="k">end forall</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>update velocity and pressure using Heun’s predictor-corrector</p></li>
+</ol>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">do </span><span class="n">m</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span>
+   <span class="p">...</span>
+</pre></div>
+</div>
+<p>The first step in the flow update is to calculate the convective and viscous forces</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="p">(</span><span class="n">m</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="k">call </span><span class="n">a</span><span class="p">%</span><span class="n">force</span><span class="p">%</span><span class="n">convect_diffuse</span><span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="n">u0</span><span class="p">,</span><span class="n">a</span><span class="p">%</span><span class="n">nu</span><span class="p">)</span>
+<span class="k">if</span><span class="p">(</span><span class="n">m</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span> <span class="k">call </span><span class="n">a</span><span class="p">%</span><span class="n">force</span><span class="p">%</span><span class="n">convect_diffuse</span><span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="n">velocity</span><span class="p">,</span><span class="n">a</span><span class="p">%</span><span class="n">nu</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>such that <code class="docutils literal notranslate"><span class="pre">a%force</span></code> now contains both forces. Next the step is to add any forcing <code class="docutils literal notranslate"><span class="pre">f</span></code> or body force <code class="docutils literal notranslate"><span class="pre">b</span></code></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Here we are looping on each component of the vectors with <code class="docutils literal notranslate"><span class="pre">e(d)</span></code></p>
+</div>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">do </span><span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">a</span><span class="p">%</span><span class="n">u0</span><span class="p">%</span><span class="n">ndims</span>
+   <span class="n">u</span> <span class="o">=&gt;</span> <span class="n">a</span><span class="p">%</span><span class="n">force</span><span class="p">%</span><span class="n">e</span><span class="p">(</span><span class="n">d</span><span class="p">)%</span><span class="n">point</span><span class="p">()</span>
+   <span class="k">if</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">f</span><span class="p">))</span> <span class="n">u</span> <span class="o">=</span> <span class="n">u</span><span class="o">+</span><span class="n">f</span><span class="p">%</span><span class="n">e</span><span class="p">(</span><span class="n">d</span><span class="p">)%</span><span class="n">point</span><span class="p">()</span>
+   <span class="n">u</span> <span class="o">=</span> <span class="n">a</span><span class="p">%</span><span class="n">u0</span><span class="p">%</span><span class="n">e</span><span class="p">(</span><span class="n">d</span><span class="p">)%</span><span class="n">point</span><span class="p">()</span><span class="o">+</span><span class="n">a</span><span class="p">%</span><span class="n">dt</span><span class="o">*</span><span class="p">(</span><span class="n">u</span><span class="o">+</span><span class="n">a</span><span class="p">%</span><span class="n">g</span><span class="p">(</span><span class="n">d</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Where we also have integrated this force with our initial condition and time-step. The next step is to aplly the DBIM equations. First we evaluate the term that is multplied by the first kernel moment (here application of BC allows MPI comunications to update halos)</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="n">body</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">   </span><span class="n">u</span> <span class="o">=</span> <span class="n">u</span><span class="o">-</span><span class="n">a</span><span class="p">%</span><span class="n">ub</span><span class="p">%</span><span class="n">e</span><span class="p">(</span><span class="n">d</span><span class="p">)%</span><span class="n">point</span><span class="p">()</span>
+   <span class="k">call </span><span class="n">a</span><span class="p">%</span><span class="n">force</span><span class="p">%</span><span class="n">e</span><span class="p">(</span><span class="n">d</span><span class="p">)%</span><span class="n">applyBC</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">a%force</span></code> now stores</p>
+<div class="math notranslate nohighlight">
+\begin{equation}
+   \vec{u}_0 + \Delta t\left( - (\vec{u}_0\cdot\nabla)\vec{u}_0 + \nu\nabla^2\vec{u}_0\right)  - \vec{u}_b \simeq \vec{f} - \vec{b}
+\end{equation}</div></div>
+<p>Next, we can calculate the normal derivative of this field (stored in <code class="docutils literal notranslate"><span class="pre">a%force</span></code>), mutliply it by <code class="docutils literal notranslate"><span class="pre">a%mu1</span></code> and store the result in <code class="docutils literal notranslate"><span class="pre">a%sigma</span></code></p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span>   <span class="k">call </span><span class="n">a</span><span class="p">%</span><span class="n">force</span><span class="p">%</span><span class="n">e</span><span class="p">(</span><span class="n">d</span><span class="p">)%</span><span class="n">ddn</span><span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="n">mu1</span><span class="p">(</span><span class="n">d</span><span class="p">)%</span><span class="n">e</span><span class="p">,</span><span class="n">a</span><span class="p">%</span><span class="n">sigma</span><span class="p">)</span>
+<span class="k">end if</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">a%sigma</span></code> now stores</p>
+<div class="math notranslate nohighlight">
+\begin{equation}
+   \mu_1\frac{\partial}{\partial n}(\vec{f} - \vec{b})
+\end{equation}</div></div>
+<p>Finally we apply both the BDIM on the flow, add the second-order correction term and we are done with the predictor</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span>   <span class="n">u</span> <span class="o">=</span> <span class="n">a</span><span class="p">%</span><span class="n">mu0</span><span class="p">%</span><span class="n">e</span><span class="p">(</span><span class="n">d</span><span class="p">)%</span><span class="n">point</span><span class="p">()</span><span class="o">*</span><span class="n">u</span>
+   <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="n">body</span><span class="p">)</span> <span class="n">u</span> <span class="o">=</span> <span class="n">u</span><span class="o">+</span><span class="n">a</span><span class="p">%</span><span class="n">ub</span><span class="p">%</span><span class="n">e</span><span class="p">(</span><span class="n">d</span><span class="p">)%</span><span class="n">point</span><span class="p">()</span><span class="o">-</span><span class="n">a</span><span class="p">%</span><span class="n">sigma</span><span class="p">%</span><span class="n">point</span><span class="p">()</span>
+   <span class="n">u</span> <span class="o">=&gt;</span> <span class="n">a</span><span class="p">%</span><span class="n">velocity</span><span class="p">%</span><span class="n">e</span><span class="p">(</span><span class="n">d</span><span class="p">)%</span><span class="n">point</span><span class="p">()</span>
+   <span class="k">if</span><span class="p">(</span><span class="n">m</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">      </span><span class="n">u</span> <span class="o">=</span> <span class="n">a</span><span class="p">%</span><span class="n">force</span><span class="p">%</span><span class="n">e</span><span class="p">(</span><span class="n">d</span><span class="p">)%</span><span class="n">point</span><span class="p">()</span>
+   <span class="k">else</span>
+<span class="k">      </span><span class="n">u</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">u</span><span class="o">+</span><span class="n">a</span><span class="p">%</span><span class="n">force</span><span class="p">%</span><span class="n">e</span><span class="p">(</span><span class="n">d</span><span class="p">)%</span><span class="n">point</span><span class="p">())</span>
+   <span class="k">end if</span>
+<span class="k">end do</span>
+<span class="k">if</span><span class="p">(</span><span class="n">m</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="k">call </span><span class="n">a</span><span class="p">%</span><span class="n">velocity</span><span class="p">%</span><span class="n">applyBC</span><span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="n">mu0</span><span class="p">,</span><span class="n">a</span><span class="p">%</span><span class="n">dt</span><span class="p">)</span>
+<span class="k">if</span><span class="p">(</span><span class="n">m</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span> <span class="k">call </span><span class="n">a</span><span class="p">%</span><span class="n">velocity</span><span class="p">%</span><span class="n">applyBC</span><span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="n">mu0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Where the predicted velocity is now store in <code class="docutils literal notranslate"><span class="pre">a%velocity</span></code> and not in <code class="docutils literal notranslate"><span class="pre">a%force</span></code> anymore.</p>
+<blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">a%velocity</span></code> now stores</p>
+<div class="math notranslate nohighlight">
+\begin{equation}
+   (\vec{f} - \vec{b})\mu_0 + \vec{b} - \mu_1\frac{\partial}{\partial n}(\vec{f} - \vec{b}) = \mu_0\vec{f} + (1-\mu_0)\vec{b} - \mu_1\frac{\partial}{\partial n}(\vec{f} - \vec{b})
+\end{equation}</div></div>
+</div></blockquote>
+<p>Next we need to project out the divergent part of the velocity field. We know use <code class="docutils literal notranslate"><span class="pre">a%sigma</span></code> to store the divergent part of the velocity field (we must also correct the  divergence of the body if it changes volume)</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="n">a</span><span class="p">%</span><span class="n">velocity</span><span class="p">%</span><span class="n">divergence</span><span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="n">sigma</span><span class="p">)</span>
+<span class="k">if</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">geom</span><span class="p">))</span> <span class="k">call </span><span class="n">geom</span><span class="p">%</span><span class="n">divergence</span><span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="n">sigma</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Next we invert the Poisson equation, using the given sigma, and a guess pressure field</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">%</span><span class="n">pressure</span><span class="p">%</span><span class="n">p</span> <span class="o">=</span> <span class="n">a</span><span class="p">%</span><span class="n">pressure</span><span class="p">%</span><span class="n">p</span><span class="o">*</span><span class="n">a</span><span class="p">%</span><span class="n">dt</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="k">call </span><span class="n">a</span><span class="p">%</span><span class="n">psolver</span><span class="p">%</span><span class="n">update</span><span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="n">pressure</span><span class="p">,</span><span class="n">a</span><span class="p">%</span><span class="n">sigma</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This pressure field is the removed from the predicted velocity field to project-out it divergent part (this step over-write <code class="docutils literal notranslate"><span class="pre">a%force</span></code> with the pressure gradient)</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span>   <span class="k">call </span><span class="n">a</span><span class="p">%</span><span class="n">force</span><span class="p">%</span><span class="n">gradient</span><span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="n">pressure</span><span class="p">)</span>
+   <span class="k">do </span><span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">a</span><span class="p">%</span><span class="n">u0</span><span class="p">%</span><span class="n">ndims</span>
+      <span class="n">u</span> <span class="o">=&gt;</span> <span class="n">a</span><span class="p">%</span><span class="n">velocity</span><span class="p">%</span><span class="n">e</span><span class="p">(</span><span class="n">d</span><span class="p">)%</span><span class="n">point</span><span class="p">()</span>
+      <span class="n">u</span> <span class="o">=</span> <span class="n">u</span><span class="o">-</span><span class="n">a</span><span class="p">%</span><span class="n">mu0</span><span class="p">%</span><span class="n">e</span><span class="p">(</span><span class="n">d</span><span class="p">)%</span><span class="n">point</span><span class="p">()</span><span class="o">*</span><span class="n">a</span><span class="p">%</span><span class="n">force</span><span class="p">%</span><span class="n">e</span><span class="p">(</span><span class="n">d</span><span class="p">)%</span><span class="n">point</span><span class="p">()</span>
+   <span class="k">end do</span>
+<span class="k">   call </span><span class="n">a</span><span class="p">%</span><span class="n">velocity</span><span class="p">%</span><span class="n">applyBC</span><span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="n">mu0</span><span class="p">)</span>
+   <span class="n">a</span><span class="p">%</span><span class="n">pressure</span><span class="p">%</span><span class="n">p</span> <span class="o">=</span> <span class="n">a</span><span class="p">%</span><span class="n">pressure</span><span class="p">%</span><span class="n">p</span><span class="o">/</span><span class="n">a</span><span class="p">%</span><span class="n">dt</span><span class="o">*</span><span class="nb">float</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="k">end do</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">a%velocity</span></code> now stores the final velocity field</p>
+<div class="math notranslate nohighlight">
+\begin{equation}
+   \mu_0\vec{f} + (1-\mu_0)\vec{b} - \mu_1\frac{\partial}{\partial n}(\vec{f} - \vec{b}) - \Delta t\mu_0\nabla p
+\end{equation}</div></div>
+<p>Finally, we prepare the solver for the next update.</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">%</span><span class="nb">time</span> <span class="o">=</span> <span class="n">a</span><span class="p">%</span><span class="nb">time</span><span class="o">+</span><span class="n">a</span><span class="p">%</span><span class="n">dt</span>
+<span class="n">a</span><span class="p">%</span><span class="n">dt</span> <span class="o">=</span> <span class="n">a</span><span class="p">%</span><span class="n">velocity</span><span class="p">%</span><span class="n">cfl_limit</span><span class="p">(</span><span class="n">a</span><span class="p">%</span><span class="n">nu</span><span class="p">)</span>
+<span class="n">a</span><span class="p">%</span><span class="n">u0</span> <span class="o">=</span> <span class="n">a</span><span class="p">%</span><span class="n">velocity</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Relevant files within the repos directory:</p>
+<ul class="simple">
+<li><p>oop/fluid.f90</p></li>
+</ul>
+</div>
+<div class="section" id="write">
+<span id="id2"></span><h2>write<a class="headerlink" href="#write" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt>
+<code class="sig-name descname">write</code><span class="sig-paren">(</span><em class="sig-param">a</em>, <em class="sig-param">geom</em>, <em class="sig-param">VandP</em>, <em class="sig-param">lambda</em>, <em class="sig-param">average</em><span class="sig-paren">)</span></dt>
+<dd><p>Writes the velocity and pressure fields</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>fluid</em>) – fluid object to write</p></li>
+<li><p><strong>geom</strong> (<em>Optional</em><em>[</em><em>body</em><em>]</em>) – geometry class to use for write</p></li>
+<li><p><strong>VandP</strong> (<em>Optional</em><em>[</em><em>logical</em><em>]</em>) – Velocity and Pressure</p></li>
+<li><p><strong>lambda</strong> (<em>Optional</em><em>[</em><em>logical</em><em>]</em>) – lambda2 and vorticity</p></li>
+<li><p><strong>average</strong> (<em>Optional</em><em>[</em><em>logical</em><em>]</em>) – average in z-direction</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>N-A</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p>By default this vrites the fluid to a <code class="docutils literal notranslate"><span class="pre">fluid.vtp.vtr</span></code> file. If <code class="docutils literal notranslate"><span class="pre">geom</span></code> is also passed to the subroutine, it also writes a <code class="docutils literal notranslate"><span class="pre">bodyF.vtp.vtr</span></code> file.</p>
+<p>By setting the flag <code class="docutils literal notranslate"><span class="pre">VandP.true.</span></code> and <code class="docutils literal notranslate"><span class="pre">lambda=.true.</span></code>, but velocity and pressure a written, in the standard file format, and a additional file <code class="docutils literal notranslate"><span class="pre">vortF.vtp.vtr</span></code> that contains the lambda_2-criterion and vorticity.</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">flow</span><span class="p">%</span><span class="k">write</span><span class="p">(</span><span class="n">geom</span><span class="p">,</span><span class="n">VandP</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.,</span><span class="n">lambda</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.)</span>
+</pre></div>
+</div>
+<p>If the <code class="docutils literal notranslate"><span class="pre">average</span></code> flag is set to <code class="docutils literal notranslate"><span class="pre">.true.</span></code>, the flow field is averaged in the z-direction, and the results are written to the <code class="docutils literal notranslate"><span class="pre">fluid.vtp.vtr</span></code> file.</p>
+<p>Relevant files within the repos directory:</p>
+<ul class="simple">
+<li><p>oop/fluid.f90</p></li>
+</ul>
+</div>
+<div class="section" id="reset-u0">
+<span id="reset"></span><h2>reset u0<a class="headerlink" href="#reset-u0" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="reset_u0">
+<code class="sig-name descname">reset_u0</code><span class="sig-paren">(</span><em class="sig-param">a</em><span class="sig-paren">)</span><a class="headerlink" href="#reset_u0" title="Permalink to this definition">¶</a></dt>
+<dd><p>resets the velocity stored in a%u0 to a%velocity</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>a</strong> (<em>fluid</em>) – fluid class to reset</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>N-A</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p>handy if velocity has been adjusted outside of ‘update’</p>
+<p>Relevant files within the repos directory:</p>
+<ul class="simple">
+<li><p>oop/fluid.f90</p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="body.html" class="btn btn-neutral float-right" title="Body" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="OOP Fluid Solver" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

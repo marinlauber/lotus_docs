@@ -9,14 +9,14 @@ This documantation is intended to help users get started with the code. Followin
  Manual
 ########
 
-.. NOTE: keep this list in sync with manual/index.rst
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    manual/introduction
    manual/getting-started
    manual/simulations/index
    manual/grid/index
+   manual/OOP/index
    manual/update-the-docs
 
 .. _references:
