@@ -49,6 +49,12 @@ help:
 	@echo "  coverage   to run coverage check of the documentation (if enabled)"
 	@echo "  dummy      to check syntax errors of document sources"
 
+.PHONY: github
+github:
+	@make html
+	@echo "Moving build/html into ../docs."
+	@cp -a build/html/. ../docs
+
 .PHONY: clean
 clean:
 	rm -rf $(BUILDDIR)/*

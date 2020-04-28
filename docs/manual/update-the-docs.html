@@ -158,8 +158,16 @@
   <div class="section" id="updating-the-documentation">
 <span id="manual-update-the-docs"></span><h1>Updating the documentation<a class="headerlink" href="#updating-the-documentation" title="Permalink to this headline">¶</a></h1>
 <p><strong>If you are given help from a more experienced user, you are expected to put that information into the lotus documentation.</strong></p>
-<p>The documentation is built with <a class="reference external" href="http://www.sphinx-doc.org/en/stable/">Sphinx</a>. The content is written in a series of text files in <cite>~Dropbox/LotusDocumentation/source</cite> in a <cite>markdown</cite>-like language for simple formatting. This is compiled into html using <code class="docutils literal notranslate"><span class="pre">make</span></code> and python script.</p>
-<p>Looking at the Sphinx website and the source files should be enough to figure out the basics.</p>
+<p>The documentation is built with <a class="reference external" href="http://www.sphinx-doc.org/en/stable/">Sphinx</a>. The content is written in a series of text files in <code class="docutils literal notranslate"><span class="pre">lotus_docs/sphinx/source</span></code> in a markdown-like language for simple formatting.</p>
+<p>Looking at the Sphinx website and the source files should be enough to figure out the basics. The <code class="docutils literal notranslate"><span class="pre">sphinx/source</span></code> folder contains the source code, written is reStructured (<code class="docutils literal notranslate"><span class="pre">.rst</span></code>) files. These are the files you want to modify/add your stuff. Once you are happy with your contribution, simply make the documentation into the html format that is needed. This can be done by typing</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ make github
+</pre></div>
+</div>
+<p>in the <code class="docutils literal notranslate"><span class="pre">sphinx</span></code> folder.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">github</span></code> makes the html documentation, and copies it from <code class="docutils literal notranslate"><span class="pre">sphinx/build</span></code> to <code class="docutils literal notranslate"><span class="pre">../docs</span></code>, it could also be done by typing <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">html</span> <span class="pre">&amp;&amp;</span> <span class="pre">cp</span> <span class="pre">-a</span> <span class="pre">build/html/.</span> <span class="pre">../docs</span></code>. The reason for this is that github pages looks for html files in <code class="docutils literal notranslate"><span class="pre">repo/docs/</span></code> to render the html documentation.</p>
+</div>
 <p>Good luck, and thanks for the help!</p>
 </div>
 
